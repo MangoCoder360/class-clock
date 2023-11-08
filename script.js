@@ -42,6 +42,11 @@ const schedule = [
       endTime.setHours(Number(currentPeriod.end.split(':')[0]));
       endTime.setMinutes(Number(currentPeriod.end.split(':')[1]));
       endTime.setSeconds(0);
+
+      const dayEndTime = new Date();
+      dayEndTime.setHours(15);
+      dayEndTime.setMinutes(50);
+      dayEndTime.setSeconds(0);
   
       const timeLeft = new Date(endTime - currentTime);
       const minutesLeft = timeLeft.getMinutes();
@@ -61,11 +66,11 @@ const schedule = [
       document.getElementById('period-progress').textContent = `Period Progress: ${periodProgress.toFixed(1)}%`;
   
       // Calculate the overall school day progress
-      const schoolStart = new Date(currentTime);
-      schoolStart.setHours(Number(schedule[0].start.split(':')[0]));
-      schoolStart.setMinutes(Number(schedule[0].start.split(':')[1]));
+      const schoolStart = new Date();
+      schoolStart.setHours(9);
+      schoolStart.setMinutes(0);
       schoolStart.setSeconds(0);
-      const totalMinutesInSchoolDay = (endTime - schoolStart) / (1000 * 60);
+      const totalMinutesInSchoolDay = (dayEndTime - schoolStart) / (1000 * 60);
       const schoolDayElapsed = (currentTime - schoolStart) / (1000 * 60);
       const dayProgress = (schoolDayElapsed / totalMinutesInSchoolDay) * 100;
   
