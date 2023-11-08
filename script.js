@@ -1,3 +1,5 @@
+var fsMode = false;
+
 const schedule = [
     { period: 'Period 1', start: '09:00', end: '09:55' },
     { period: 'Period 2', start: '10:00', end: '10:54' },
@@ -62,7 +64,12 @@ const schedule = [
       const periodProgress = (minutesElapsed / totalMinutesInPeriod) * 100;
   
       document.getElementById('period').textContent = currentPeriod.period;
-      document.getElementById('time-left').textContent = `${minutesLeft}:${secondsLeft} remaining`;
+      if(fsMode){
+        document.getElementById('time-left').textContent = `${minutesLeft}:${secondsLeft}`;
+      }
+      else{
+        document.getElementById('time-left').textContent = `${minutesLeft}:${secondsLeft} remaining`;
+      }
       document.getElementById('period-progress').textContent = `Period Progress: ${periodProgress.toFixed(1)}%`;
   
       // Calculate the overall school day progress
@@ -84,3 +91,21 @@ const schedule = [
   }
 
   setInterval(updateSchedule, 200);
+
+
+function fsCountdown(){
+  var elementsToHide = document.getElementsByClassName("hide");
+  if(fsMode){
+    for(var i = 0; i < elementsToHide.length; i++){
+      elementsToHide[i].style.display = "block";
+      document.getElementById("time-left").style.fontSize = "4em";
+    }
+  }
+  else{
+    for(var i = 0; i < elementsToHide.length; i++){
+      elementsToHide[i].style.display = "none";
+      document.getElementById("time-left").style.fontSize = "20vw";
+    }
+  }
+  fsMode = !fsMode;
+}
