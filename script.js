@@ -1,6 +1,6 @@
 var fsMode = false;
 
-const schedule = [
+const TueThruFriSchedule = [
     { period: 'Period 1', start: '09:00', end: '09:55' },
     { period: 'Period 2', start: '10:00', end: '10:54' },
     { period: 'Period 3', start: '10:59', end: '11:53' },
@@ -10,6 +10,18 @@ const schedule = [
     { period: 'Period 5', start: '13:57', end: '14:51' },
     { period: 'Period 6', start: '14:56', end: '15:50' },
   ];
+
+const mondaySchedule = [
+    { period: 'Period 1', start: '10:15', end: '11:05' },
+    { period: 'Period 2', start: '11:10', end: '11:56' },
+    { period: 'Period 3', start: '12:01', end: '12:47' },
+    { period: 'Lunch', start: '12:47', end: '1:17' },
+    { period: 'Period 4', start: '1:22', end: '2:08' },
+    { period: 'Period 5', start: '2:13', end: '2:59' },
+    { period: 'Period 6', start: '3:04', end: '3:50' },
+];
+
+var schedule = [];
   
   function updateSchedule() {
     const currentTime = new Date();
@@ -22,6 +34,13 @@ const schedule = [
       document.getElementById('day-progress').textContent = '';
       document.getElementById('period-progress').textContent = '';
       return;
+    }
+
+    if(currentDay == 1){
+      schedule = mondaySchedule;
+    }
+    else{
+      schedule = TueThruFriSchedule;
     }
   
     // Find the current period
@@ -108,4 +127,35 @@ function fsCountdown(){
     }
   }
   fsMode = !fsMode;
+}
+
+
+function enableBgImg(){
+  document.body.style.backgroundImage = 'url("https://cdn.reuben.zip/classclock/background.png")';
+  document.body.style.backgroundRepeat = "no-repeat";
+  document.body.style.backgroundPosition = "center";
+  document.body.style.backgroundSize = "cover";
+  document.body.style.backgroundAttachment = "fixed";
+  document.getElementById("bgImg").innerHTML = "<p>Image by Minerpixel</p><button onclick='location.reload()'>Disable image</button>";
+}
+
+function toggleTextColor(){
+  if(document.getElementById("body").style.color == "white"){
+    document.getElementById("body").style.color = "black";
+  }
+  else{
+    document.getElementById("body").style.color = "white";
+  }
+}
+
+function switchTheme(themeName){
+  if(themeName == "default"){
+    document.body.style.background = "linear-gradient(90deg, rgba(29,140,0,1) 0%, rgba(190,195,255,1) 50%, rgba(255,188,0,1) 100%)";
+  }
+  if(themeName == "romania"){
+    document.body.style.background = "linear-gradient(90deg, #002B7F, #FCD116, #CE1126)";
+  }
+  if(themeName == "phrog"){
+    document.body.style.background = "linear-gradient(90deg, #000000, #00FF00, #FFFFFF)";
+  }
 }
