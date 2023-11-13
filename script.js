@@ -26,21 +26,24 @@ var schedule = [];
   function updateSchedule() {
     const currentTime = new Date();
     const currentDay = currentTime.getDay(); // Get the current day of the week (0 = Sunday, 1 = Monday, ...)
+
+    if(currentDay == 1){
+      schedule = mondaySchedule;
+      document.getElementById("scheduleName").innerHTML = "WHS Monday Schedule";
+    }
+    else{
+      schedule = TueThruFriSchedule;
+      document.getElementById("scheduleName").innerHTML = "WHS Tuesday-Friday Schedule";
+    }
   
     // Check if it's a weekend (Saturday or Sunday)
-    if (currentDay === 0 || currentDay === 6) {
+    if (currentDay == 0 || currentDay == 6) {
       document.getElementById('period').textContent = 'Weekend';
       document.getElementById('time-left').textContent = '';
       document.getElementById('day-progress').textContent = '';
       document.getElementById('period-progress').textContent = '';
+      document.getElementById("scheduleName").innerHTML = "No schedule today";
       return;
-    }
-
-    if(currentDay == 1){
-      schedule = mondaySchedule;
-    }
-    else{
-      schedule = TueThruFriSchedule;
     }
   
     // Find the current period
@@ -130,13 +133,16 @@ function fsCountdown(){
 }
 
 
-function enableBgImg(){
+function enableBgImg(refresh){
   document.body.style.backgroundImage = 'url("https://cdn.reuben.zip/classclock/background.png")';
   document.body.style.backgroundRepeat = "no-repeat";
   document.body.style.backgroundPosition = "center";
   document.body.style.backgroundSize = "cover";
   document.body.style.backgroundAttachment = "fixed";
-  document.getElementById("bgImg").innerHTML = "<p>Image by Minerpixel</p><button onclick='location.reload()'>Disable image</button>";
+  if(refresh){
+    window.location.href = '/?theme=img';
+  }
+  document.getElementById("bgImg").innerHTML = "<p>Image by Minerpixel</p><button onclick=\"window.location.href='/'\">Disable image</button>";
 }
 
 function toggleTextColor(){
@@ -148,7 +154,7 @@ function toggleTextColor(){
   }
 }
 
-function switchTheme(themeName){
+function switchTheme(themeName,refresh){
   if(themeName == "default"){
     document.body.style.background = "linear-gradient(90deg, rgba(29,140,0,1) 0%, rgba(190,195,255,1) 50%, rgba(255,188,0,1) 100%)";
   }
@@ -158,4 +164,24 @@ function switchTheme(themeName){
   if(themeName == "phrog"){
     document.body.style.background = "linear-gradient(90deg, #000000, #00FF00, #FFFFFF)";
   }
+
+  if(refresh){
+    window.location.href = '/?theme=' + themeName;
+  }
 }
+
+function setThemeFromUrl() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const theme = urlParams.get('theme');
+  if (theme) {
+    if(theme == "img"){
+      enableBgImg(false);
+    }
+    else{
+      switchTheme(theme,false);
+    }
+  }
+}
+
+
+setTimeout(setThemeFromUrl, 200);

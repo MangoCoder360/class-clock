@@ -13,7 +13,7 @@
     <h2 id="time-left">00:00 remaining</h2>
     <h4 class="hide" id="day-progress">0%</h4>
     <h4 class="hide" id="period-progress">0%</h4><br>
-    <p class="hide">WHS Tuesday-Friday Schedule</p><br>
+    <p id="scheduleName" class="hide">Schedule Name</p><br>
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#settings">Settings</button>
 </body>
 </html>
@@ -28,11 +28,11 @@
             <button onclick="fsCountdown()">Fullscreen Countdown</button>
             <button onclick="toggleTextColor()">Toggle Text Color</button>
             <div id="bgImg">
-                <button onclick="enableBgImg()">Enable background image</button>
+                <button onclick="enableBgImg(true)">Enable background image</button>
                 <h1 class="modal-title fs-6">Themes:</h1>
-                <button onclick="switchTheme('default')">Default</button><br>
-                <button onclick="switchTheme('romania')">Romania</button><br>
-                <button onclick="switchTheme('phrog')">Phrog</button><br>
+                <button onclick="switchTheme('default',true)">Default</button><br>
+                <button onclick="switchTheme('romania',true)">Romania</button><br>
+                <button onclick="switchTheme('phrog',true)">Phrog</button><br>
             </div>
         </div>
       </div>
