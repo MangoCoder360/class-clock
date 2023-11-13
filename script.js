@@ -133,15 +133,12 @@ function fsCountdown(){
 }
 
 
-function enableBgImg(refresh){
+function enableBgImg(){
   document.body.style.backgroundImage = 'url("https://cdn.reuben.zip/classclock/background.png")';
   document.body.style.backgroundRepeat = "no-repeat";
   document.body.style.backgroundPosition = "center";
   document.body.style.backgroundSize = "cover";
   document.body.style.backgroundAttachment = "fixed";
-  if(refresh){
-    window.location.href = '/?theme=img';
-  }
   document.getElementById("bgImg").innerHTML = "<p>Image by Minerpixel</p><button onclick=\"window.location.href='/'\">Disable image</button>";
 }
 
@@ -154,7 +151,7 @@ function toggleTextColor(){
   }
 }
 
-function switchTheme(themeName,refresh){
+function switchTheme(themeName){
   if(themeName == "default"){
     document.body.style.background = "linear-gradient(90deg, rgba(29,140,0,1) 0%, rgba(190,195,255,1) 50%, rgba(255,188,0,1) 100%)";
   }
@@ -164,24 +161,18 @@ function switchTheme(themeName,refresh){
   if(themeName == "phrog"){
     document.body.style.background = "linear-gradient(90deg, #000000, #00FF00, #FFFFFF)";
   }
-
-  if(refresh){
-    window.location.href = '/?theme=' + themeName;
-  }
 }
 
 function setThemeFromUrl() {
+  updateSchedule();
   const urlParams = new URLSearchParams(window.location.search);
   const theme = urlParams.get('theme');
   if (theme) {
     if(theme == "img"){
-      enableBgImg(false);
+      enableBgImg();
     }
     else{
-      switchTheme(theme,false);
+      switchTheme(theme);
     }
   }
 }
-
-
-setTimeout(setThemeFromUrl, 200);
