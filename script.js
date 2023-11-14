@@ -12,13 +12,13 @@ const TueThruFriSchedule = [
   ];
 
 const mondaySchedule = [
-    { period: 'Period 1', start: '10:15', end: '11:05' },
-    { period: 'Period 2', start: '11:10', end: '11:56' },
-    { period: 'Period 3', start: '12:01', end: '12:47' },
-    { period: 'Lunch', start: '12:47', end: '1:17' },
-    { period: 'Period 4', start: '1:22', end: '2:08' },
-    { period: 'Period 5', start: '2:13', end: '2:59' },
-    { period: 'Period 6', start: '3:04', end: '3:50' },
+  { period: 'Period 1', start: '10:15', end: '11:05' },
+  { period: 'Period 2', start: '11:10', end: '11:56' },
+  { period: 'Period 3', start: '12:01', end: '12:47' },
+  { period: 'Lunch', start: '12:47', end: '13:17' },
+  { period: 'Period 4', start: '13:22', end: '14:08' },
+  { period: 'Period 5', start: '14:13', end: '14:59' },
+  { period: 'Period 6', start: '15:04', end: '15:50' },
 ];
 
 var schedule = [];
@@ -158,8 +158,8 @@ function switchTheme(themeName){
   if(themeName == "romania"){
     document.body.style.background = "linear-gradient(90deg, #002B7F, #FCD116, #CE1126)";
   }
-  if(themeName == "phrog"){
-    document.body.style.background = "linear-gradient(90deg, #000000, #00FF00, #FFFFFF)";
+  if(themeName == "woodland"){
+    document.body.style.background = "linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(3,75,0,1) 100%)";
   }
 }
 
