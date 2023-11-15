@@ -176,3 +176,20 @@ function setThemeFromUrl() {
     }
   }
 }
+
+function importTheme(){
+  const file = document.getElementById('themeFile').files[0];
+  const reader = new FileReader();
+  reader.onload = function(){
+      const data = JSON.parse(reader.result);
+      if(data.themeVersion != 1){
+        alert("This theme is not compatible with this version of Class Clock.")
+      }
+      else{
+        document.body.style.background = data.cssGradient;
+        document.getElementById("body").style.color = data.fontColor;
+        document.getElementById("bgImg").innerHTML = 'Custom theme "'+data.themeName+'" is active.';
+      }
+  };
+  reader.readAsText(file);
+}
