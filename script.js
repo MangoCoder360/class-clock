@@ -87,10 +87,14 @@ var schedule = [];
   
       document.getElementById('period').textContent = currentPeriod.period;
       if(fsMode){
-        document.getElementById('time-left').textContent = `${minutesLeft}:${secondsLeft}`;
+        const formattedSecondsLeft = secondsLeft.toString().padStart(2, '0');
+        const formattedMinutesLeft = minutesLeft.toString().padStart(2, '0');
+        document.getElementById('time-left').textContent = `${formattedMinutesLeft}:${formattedSecondsLeft}`;
       }
       else{
-        document.getElementById('time-left').textContent = `${minutesLeft}:${secondsLeft} remaining`;
+        const formattedSecondsLeft = secondsLeft.toString().padStart(2, '0');
+        const formattedMinutesLeft = minutesLeft.toString().padStart(2, '0');
+        document.getElementById('time-left').textContent = `${formattedMinutesLeft}:${formattedSecondsLeft} remaining`;
       }
       document.getElementById('period-progress').textContent = `Period Progress: ${periodProgress.toFixed(1)}%`;
   
