@@ -165,6 +165,9 @@ function switchTheme(themeName){
   if(themeName == "woodland"){
     document.body.style.background = "linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(3,75,0,1) 100%)";
   }
+  if(themeName == "bah-bah"){
+    document.body.style.background = "linear-gradient(90deg, #0cd46d 0%, #1bc4d0 50%, #144ac8 100%)"
+  }
 }
 
 function setThemeFromUrl() {
