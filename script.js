@@ -168,6 +168,10 @@ function switchTheme(themeName){
   if(themeName == "bah-bah"){
     document.body.style.background = "linear-gradient(90deg, #0cd46d 0%, #1bc4d0 50%, #144ac8 100%)"
   }
+  if(themeName == "craig"){
+    document.body.style.background = "linear-gradient(90deg, #ff0000 0%, #85008f 50%, #0008ff 100%)"
+    document.getElementById("body").style.color = "white";
+  }
 }
 
 function setThemeFromUrl() {
