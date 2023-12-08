@@ -200,3 +200,20 @@ function importTheme(){
       }
   reader.readAsText(file);
 }
+
+function setScheduleFromSchool(){
+  var schoolName = Cookies.get('school');
+  if (schoolName == undefined){
+    window.location.href = "/school-select.html";
+  }
+  
+  if(schoolName == "whs"){
+    console.log("School = WHS");
+  }
+  else{
+    alert("School not added yet! Check back later.");
+    window.location.href = "/school-select.html";
+  }
+}
+
+setTimeout(setScheduleFromSchool, 500);
