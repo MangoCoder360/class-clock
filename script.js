@@ -205,6 +205,7 @@ function setScheduleFromSchool(){
   var schoolName = Cookies.get('school');
   if (schoolName == undefined){
     window.location.href = "/school-select.html";
+    return;
   }
   
   if(schoolName == "whs"){
