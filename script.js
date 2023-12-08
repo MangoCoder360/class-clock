@@ -1,5 +1,5 @@
 var fsMode = false;
-var schoolName;
+var schoolAcronym;
 
 const whsTueThruFriSchedule = [
     { period: 'Period 1', start: '09:00', end: '09:55' },
@@ -56,10 +56,10 @@ var schedule = [];
     const currentDay = currentTime.getDay(); // Get the current day of the week (0 = Sunday, 1 = Monday, ...)
 
     if(currentDay == 1){
-      document.getElementById("scheduleName").innerHTML = schoolName+" Monday Schedule";
+      document.getElementById("scheduleName").innerHTML = schoolAcronym+" Monday Schedule";
     }
     else{
-      document.getElementById("scheduleName").innerHTML = schoolName+" Tuesday-Friday Schedule";
+      document.getElementById("scheduleName").innerHTML = schoolAcronym+" Tuesday-Friday Schedule";
     }
   
     // Check if it's a weekend (Saturday or Sunday)
@@ -237,12 +237,12 @@ function setScheduleFromSchool(){
   
   if(schoolName == "whs"){
     console.log("School = WHS");
-    schoolName = "WHS";
+    schoolAcronym = "WHS";
     setScheduleVar(whsmondaySchedule,whsTueThruFriSchedule);
   }
-  if(schoolName == "wms"){
+  else if(schoolName == "wms"){
     console.log("School = WMS");
-    schoolName = "WMS";
+    schoolAcronym = "WMS";
     setScheduleVar(wmsMondaySchedule,wmsTueThruFriSchedule);
   }
   else{
