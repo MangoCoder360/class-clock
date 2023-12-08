@@ -1,6 +1,7 @@
 var fsMode = false;
+var schoolName;
 
-const TueThruFriSchedule = [
+const whsTueThruFriSchedule = [
     { period: 'Period 1', start: '09:00', end: '09:55' },
     { period: 'Period 2', start: '10:00', end: '10:54' },
     { period: 'Period 3', start: '10:59', end: '11:53' },
@@ -11,7 +12,7 @@ const TueThruFriSchedule = [
     { period: 'Period 6', start: '14:56', end: '15:50' },
   ];
 
-const mondaySchedule = [
+const whsmondaySchedule = [
   { period: 'Period 1', start: '10:15', end: '11:05' },
   { period: 'Period 2', start: '11:10', end: '11:56' },
   { period: 'Period 3', start: '12:01', end: '12:47' },
@@ -21,6 +22,33 @@ const mondaySchedule = [
   { period: 'Period 6', start: '15:04', end: '15:50' },
 ];
 
+const wmsTueThruFriSchedule = [
+  { period: 'Period 1/Homeroom', start: '8:45', end: '9:34' },
+  { period: 'Period 2', start: '9:38', end: '10:26' },
+  { period: 'Period 3', start: '10:30', end: '11:18' },
+  { period: '6th Grade Lunch / Recess', start: '11:22', end: '11:57' },
+  { period: '5th Grade Lunch / Recess', start: '11:22', end: '11:57' },
+  { period: 'Period 4', start: '12:01', end: '12:49' },
+  { period: 'Period 5', start: '12:53', end: '1:41' },
+  { period: 'Period 6', start: '1:45', end: '2:33' },
+  { period: 'Period 7', start: '2:37', end: '3:25' },
+];
+
+const wmsMondaySchedule = [
+  { period: 'Period 1', start: '10:00', end: '10:33' },
+  { period: 'Period 2', start: '10:37', end: '11:10' },
+  { period: 'Period 3', start: '11:14', end: '11:47' },
+  { period: '6th Grade Lunch / Recess', start: '11:47', end: '12:22' },
+  { period: '5th Grade Lunch / Recess', start: '11:47', end: '12:22' },
+  { period: 'Period 4', start: '12:26', end: '1:03' },
+  { period: 'Period 5', start: '1:07', end: '1:40' },
+  { period: 'Period 6', start: '1:44', end: '2:17' },
+  { period: 'Period 7', start: '2:21', end: '2:54' },
+  { period: 'Trojan Time', start: '2:58', end: '3:25' },
+];
+
+
+
 var schedule = [];
   
   function updateSchedule() {
@@ -28,12 +56,10 @@ var schedule = [];
     const currentDay = currentTime.getDay(); // Get the current day of the week (0 = Sunday, 1 = Monday, ...)
 
     if(currentDay == 1){
-      schedule = mondaySchedule;
-      document.getElementById("scheduleName").innerHTML = "WHS Monday Schedule";
+      document.getElementById("scheduleName").innerHTML = schoolName+" Monday Schedule";
     }
     else{
-      schedule = TueThruFriSchedule;
-      document.getElementById("scheduleName").innerHTML = "WHS Tuesday-Friday Schedule";
+      document.getElementById("scheduleName").innerHTML = schoolName+" Tuesday-Friday Schedule";
     }
   
     // Check if it's a weekend (Saturday or Sunday)
@@ -116,7 +142,7 @@ var schedule = [];
     }
   }
 
-  setInterval(updateSchedule, 200);
+  setInterval(updateSchedule, 300);
 
 
 function fsCountdown(){
@@ -175,6 +201,7 @@ function switchTheme(themeName){
 }
 
 function setThemeFromUrl() {
+  setScheduleFromSchool();
   updateSchedule();
   const urlParams = new URLSearchParams(window.location.search);
   const theme = urlParams.get('theme');
@@ -210,6 +237,13 @@ function setScheduleFromSchool(){
   
   if(schoolName == "whs"){
     console.log("School = WHS");
+    schoolName = "WHS";
+    setScheduleVar(whsmondaySchedule,whsTueThruFriSchedule);
+  }
+  if(schoolName == "wms"){
+    console.log("School = WMS");
+    schoolName = "WMS";
+    setScheduleVar(wmsMondaySchedule,wmsTueThruFriSchedule);
   }
   else{
     alert("School not added yet! Check back later.");
@@ -217,4 +251,14 @@ function setScheduleFromSchool(){
   }
 }
 
-setTimeout(setScheduleFromSchool, 500);
+function setScheduleVar(monSchedVar,ttfSchedVar){
+  const currentTime = new Date();
+  const currentDay = currentTime.getDay(); // Get the current day of the week (0 = Sunday, 1 = Monday, ...)
+  
+  if(currentDay == 1){
+    schedule = monSchedVar;
+  }
+  else{
+    schedule = ttfSchedVar;
+  }
+}
