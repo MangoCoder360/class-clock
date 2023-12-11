@@ -134,6 +134,12 @@ var schedule = [];
       const dayProgress = (schoolDayElapsed / totalMinutesInSchoolDay) * 100;
   
       document.getElementById('day-progress').textContent = `Day Progress: ${dayProgress.toFixed(1)}%`;
+      if(Math.round(100-dayProgress)+10 >= 100){
+        document.getElementById("target-battery").innerHTML = "Ideal Phone Battery: 100%";
+      }
+      else{
+        document.getElementById("target-battery").innerHTML = "Ideal Phone Battery: "+(Math.round(100-dayProgress)+10)+"%";
+      }
     } else {
       document.getElementById('period').textContent = 'Class is not in session';
       document.getElementById('time-left').textContent = '';
