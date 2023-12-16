@@ -170,12 +170,12 @@ function fsCountdown(){
 
 
 function enableBgImg(){
-  document.body.style.backgroundImage = 'url("https://cdn.reuben.zip/classclock/background.png")';
+  document.body.style.backgroundImage = 'url("https://cdn.reuben.zip/classclock/background.jpg")';
   document.body.style.backgroundRepeat = "no-repeat";
   document.body.style.backgroundPosition = "center";
   document.body.style.backgroundSize = "cover";
   document.body.style.backgroundAttachment = "fixed";
-  document.getElementById("bgImg").innerHTML = "<p>Image by Minerpixel</p><button onclick=\"window.location.href='/'\">Disable image</button>";
+  document.getElementById("bgImg").innerHTML = "<p>Background Image Enabled</p><button onclick=\"window.location.href='/'\">Disable image</button>";
 }
 
 function toggleTextColor(){
