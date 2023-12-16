@@ -21,7 +21,7 @@
     <h2 id="time-left">00:00 remaining</h2>
     <h4 class="hide" id="day-progress">0%</h4>
     <h4 class="hide" id="period-progress">0%</h4>
-    <h4 class="hide" id="target-battery">0%</h4><br>
+    <h4 style="display:none;" id="target-battery">0%</h4><br>
     <p id="scheduleName" class="hide">Schedule Name</p><br>
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#settings">Settings</button>
 </body>
@@ -36,6 +36,8 @@
         <div class="modal-body">
             <button onclick="fsCountdown()">Fullscreen Countdown</button>
             <button onclick="toggleTextColor()">Toggle Text Color</button>
+            <button onclick="toggleIdealBattery()">Toggle Ideal Battery</button>
+            <button onclick="window.location.href='/custom-schedule-editor.html'">Edit Custom Schedule</button>
             <button onclick="window.location.href='/school-select.html'">Change School</button>
             <div id="bgImg">
                 <a href="/?theme=img">Enable background image</a>

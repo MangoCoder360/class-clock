@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Class Clock</title>
+    <title>CC School Select</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
@@ -20,6 +20,10 @@
         <h3>WMS</h3>
         <h4>Woodland Middle School</h4>
     </div>
+    <div onclick="setSchoolCookie('custom')" class="school">
+        <h3>CUSTOM</h3>
+        <h4>If you have saved a custom schedule, load it here</h4>
+    </div>
     <div onclick="setSchoolCookie('demo')" class="school">
         <h3>DEMO</h3>
         <h4>See what Class Clock looks like</h4>
@@ -33,7 +37,7 @@
         border-radius: 5px;
         padding: 10px;
         margin: 10px;
-        width: 50%;
+        width: 60%;
         margin-left: auto;
         margin-right: auto;
         text-align: left;

@@ -1,5 +1,8 @@
 var fsMode = false;
 var schoolAcronym;
+var showIdealBattery = false;
+
+var customSchedule = [];
 
 const demoSchedule = [
     { period: 'DEMO', start: '06:00', end: '22:00' }
@@ -27,15 +30,15 @@ const whsmondaySchedule = [
 ];
 
 const wmsTueThruFriSchedule = [
-  { period: 'Period 1/Homeroom', start: '8:45', end: '9:34' },
-  { period: 'Period 2', start: '9:38', end: '10:26' },
+  { period: 'Period 1/Homeroom', start: '08:45', end: '09:34' },
+  { period: 'Period 2', start: '09:38', end: '10:26' },
   { period: 'Period 3', start: '10:30', end: '11:18' },
   { period: '6th Grade Lunch / Recess', start: '11:22', end: '11:57' },
   { period: '5th Grade Lunch / Recess', start: '11:22', end: '11:57' },
   { period: 'Period 4', start: '12:01', end: '12:49' },
-  { period: 'Period 5', start: '12:53', end: '1:41' },
-  { period: 'Period 6', start: '1:45', end: '2:33' },
-  { period: 'Period 7', start: '2:37', end: '3:25' },
+  { period: 'Period 5', start: '12:53', end: '13:41' },
+  { period: 'Period 6', start: '13:45', end: '14:33' },
+  { period: 'Period 7', start: '14:37', end: '15:25' },
 ];
 
 const wmsMondaySchedule = [
@@ -44,11 +47,11 @@ const wmsMondaySchedule = [
   { period: 'Period 3', start: '11:14', end: '11:47' },
   { period: '6th Grade Lunch / Recess', start: '11:47', end: '12:22' },
   { period: '5th Grade Lunch / Recess', start: '11:47', end: '12:22' },
-  { period: 'Period 4', start: '12:26', end: '1:03' },
-  { period: 'Period 5', start: '1:07', end: '1:40' },
-  { period: 'Period 6', start: '1:44', end: '2:17' },
-  { period: 'Period 7', start: '2:21', end: '2:54' },
-  { period: 'Trojan Time', start: '2:58', end: '3:25' },
+  { period: 'Period 4', start: '12:26', end: '13:03' },
+  { period: 'Period 5', start: '13:07', end: '13:40' },
+  { period: 'Period 6', start: '13:44', end: '14:17' },
+  { period: 'Period 7', start: '14:21', end: '14:54' },
+  { period: 'Trojan Time', start: '14:58', end: '15:25' },
 ];
 
 
@@ -67,7 +70,7 @@ var schedule = [];
     }
   
     // Check if it's a weekend (Saturday or Sunday)
-    if ((currentDay == 0 || currentDay == 6) && schoolAcronym != "DEMO") {
+    if ((currentDay == 0 || currentDay == 6) && schoolAcronym != "DEMO" && schoolAcronym != "CUSTOM") {
       document.getElementById('period').textContent = 'Weekend';
       document.getElementById('time-left').textContent = '';
       document.getElementById('day-progress').textContent = '';
@@ -160,12 +163,14 @@ var schedule = [];
 function fsCountdown(){
   var elementsToHide = document.getElementsByClassName("hide");
   if(fsMode){
+    renderIdealBattery();
     for(var i = 0; i < elementsToHide.length; i++){
       elementsToHide[i].style.display = "block";
       document.getElementById("time-left").style.fontSize = "4em";
     }
   }
   else{
+    document.getElementById("target-battery").style.display = "none"; // hide ideal battery
     for(var i = 0; i < elementsToHide.length; i++){
       elementsToHide[i].style.display = "none";
       document.getElementById("time-left").style.fontSize = "35vw";
@@ -202,6 +207,7 @@ function switchTheme(themeName){
   }
   if(themeName == "woodland"){
     document.body.style.background = "linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(3,75,0,1) 100%)";
+    document.getElementById("body").style.color = "white";
   }
   if(themeName == "bah-bah"){
     document.body.style.background = "linear-gradient(90deg, #0cd46d 0%, #1bc4d0 50%, #144ac8 100%)"
@@ -262,6 +268,12 @@ function setScheduleFromSchool(){
     schoolAcronym = "DEMO";
     setScheduleVar(demoSchedule,demoSchedule);
   }
+  else if(schoolName == "custom"){
+    console.log("School = CUSTOM");
+    schoolAcronym = "CUSTOM";
+    loadCustomSchedule();
+    setScheduleVar(customSchedule,customSchedule);
+  }
   else{
     alert("School not added yet! Check back later.");
     window.location.href = "/school-select.html";
@@ -277,5 +289,33 @@ function setScheduleVar(monSchedVar,ttfSchedVar){
   }
   else{
     schedule = ttfSchedVar;
+  }
+}
+
+function toggleIdealBattery(){
+  if(showIdealBattery == false){
+    document.getElementById("target-battery").style.display = "block";
+    showIdealBattery = true;
+  }
+  else{
+    document.getElementById("target-battery").style.display = "none";
+    showIdealBattery = false;
+  }
+}
+
+function renderIdealBattery(){
+  if(showIdealBattery == true){
+    document.getElementById("target-battery").style.display = "block";
+  }
+  else{
+    document.getElementById("target-battery").style.display = "none";
+  }
+}
+
+function loadCustomSchedule(){
+  customSchedule = JSON.parse(localStorage.getItem('customSchedule'));
+  if(customSchedule == null){
+      customSchedule = [];
+      window.location.href = "/custom-schedule-editor.html";
   }
 }
