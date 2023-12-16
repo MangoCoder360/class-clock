@@ -1,6 +1,10 @@
 var fsMode = false;
 var schoolAcronym;
 
+const demoSchedule = [
+    { period: 'DEMO', start: '06:00', end: '22:00' }
+];
+
 const whsTueThruFriSchedule = [
     { period: 'Period 1', start: '09:00', end: '09:55' },
     { period: 'Period 2', start: '10:00', end: '10:54' },
@@ -63,11 +67,12 @@ var schedule = [];
     }
   
     // Check if it's a weekend (Saturday or Sunday)
-    if (currentDay == 0 || currentDay == 6) {
+    if ((currentDay == 0 || currentDay == 6) && schoolAcronym != "DEMO") {
       document.getElementById('period').textContent = 'Weekend';
       document.getElementById('time-left').textContent = '';
       document.getElementById('day-progress').textContent = '';
       document.getElementById('period-progress').textContent = '';
+      document.getElementById("target-battery").innerHTML = "";
       document.getElementById("scheduleName").innerHTML = "No schedule today";
       return;
     }
@@ -145,6 +150,7 @@ var schedule = [];
       document.getElementById('time-left').textContent = '';
       document.getElementById('day-progress').textContent = '';
       document.getElementById('period-progress').textContent = '';
+      document.getElementById("target-battery").innerHTML = "";
     }
   }
 
@@ -162,7 +168,7 @@ function fsCountdown(){
   else{
     for(var i = 0; i < elementsToHide.length; i++){
       elementsToHide[i].style.display = "none";
-      document.getElementById("time-left").style.fontSize = "20vw";
+      document.getElementById("time-left").style.fontSize = "35vw";
     }
   }
   fsMode = !fsMode;
@@ -250,6 +256,11 @@ function setScheduleFromSchool(){
     console.log("School = WMS");
     schoolAcronym = "WMS";
     setScheduleVar(wmsMondaySchedule,wmsTueThruFriSchedule);
+  }
+  else if(schoolName == "demo"){
+    console.log("School = DEMO");
+    schoolAcronym = "DEMO";
+    setScheduleVar(demoSchedule,demoSchedule);
   }
   else{
     alert("School not added yet! Check back later.");
