@@ -9,23 +9,35 @@ const demoSchedule = [
 ];
 
 const whsTueThruFriSchedule = [
-    { period: 'Period 1', start: '09:00', end: '09:55' },
-    { period: 'Period 2', start: '10:00', end: '10:54' },
-    { period: 'Period 3', start: '10:59', end: '11:53' },
-    { period: 'Lunch', start: '11:53', end: '12:23' },
-    { period: 'Period 4', start: '12:28', end: '13:22' },
-    { period: 'GRIT 101', start: '13:27', end: '13:52' },
-    { period: 'Period 5', start: '13:57', end: '14:51' },
-    { period: 'Period 6', start: '14:56', end: '15:50' },
-  ];
+  { period: 'Before School', start: '08:45', end: '09:00' },
+  { period: 'Period 1', start: '09:00', end: '09:55' },
+  { period: 'Passing Time', start: '09:55', end: '10:00' },
+  { period: 'Period 2', start: '10:00', end: '10:54' },
+  { period: 'Passing Time', start: '10:54', end: '10:59' },
+  { period: 'Period 3', start: '10:59', end: '11:53' },
+  { period: 'Passing Time', start: '11:53', end: '11:58' },
+  { period: 'Lunch', start: '11:58', end: '12:23' },
+  { period: 'Period 4', start: '12:28', end: '13:22' },
+  { period: 'Passing Time', start: '13:22', end: '13:27' },
+  { period: 'GRIT 101', start: '13:27', end: '13:52' },
+  { period: 'Passing Time', start: '13:52', end: '13:57' },
+  { period: 'Period 5', start: '13:57', end: '14:51' },
+  { period: 'Passing Time', start: '14:51', end: '14:56' },
+  { period: 'Period 6', start: '14:56', end: '15:50' },
+];
 
 const whsmondaySchedule = [
   { period: 'Period 1', start: '10:15', end: '11:05' },
+  { period: 'Passing Time', start: '11:05', end: '11:10' },
   { period: 'Period 2', start: '11:10', end: '11:56' },
+  { period: 'Passing Time', start: '11:56', end: '12:01' },
   { period: 'Period 3', start: '12:01', end: '12:47' },
-  { period: 'Lunch', start: '12:47', end: '13:17' },
+  { period: 'Passing Time', start: '12:47', end: '12:52' },
+  { period: 'Lunch', start: '12:52', end: '13:17' },
   { period: 'Period 4', start: '13:22', end: '14:08' },
+  { period: 'Passing Time', start: '14:08', end: '14:13' },
   { period: 'Period 5', start: '14:13', end: '14:59' },
+  { period: 'Passing Time', start: '14:59', end: '15:04' },
   { period: 'Period 6', start: '15:04', end: '15:50' },
 ];
 
