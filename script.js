@@ -67,6 +67,40 @@ const wmsMondaySchedule = [
 ];
 
 
+const wednesdayFinalsSchedule = [
+  { period: 'Period 1 Final (First Half)', start: '09:00', end: '10:00' },
+  { period: 'Period 1 Final (Second Half)', start: '10:00', end: '11:00' },
+  { period: 'Period 2', start: '11:05', end: '11:55' },
+  { period: 'Lunch', start: '11:55', end: '12:25' },
+  { period: 'Period 5', start: '12:30', end: '13:20' },
+  { period: 'GRIT 101', start: '13:25', end: '13:45' },
+  { period: 'Period 4 Final (First Half)', start: '13:50', end: '14:50' },
+  { period: 'Period 4 Final (Second Half)', start: '14:50', end: '15:50' }
+];
+
+const thursdayFinalsSchedule = [
+  { period: 'Period 2 Final (First Half)', start: '09:00', end: '10:00' },
+  { period: 'Period 2 Final (Second Half)', start: '10:00', end: '11:00' },
+  { period: 'Period 2', start: '11:05', end: '11:55' },
+  { period: 'Lunch', start: '11:55', end: '12:25' },
+  { period: 'Period 5', start: '12:30', end: '13:20' },
+  { period: 'GRIT 101', start: '13:25', end: '13:45' },
+  { period: 'Period 4 Final (First Half)', start: '13:50', end: '14:50' },
+  { period: 'Period 4 Final (Second Half)', start: '14:50', end: '15:50' }
+];
+
+const fridayFinalsSchedule = [
+  { period: 'Period 1 Final (First Half)', start: '09:00', end: '10:00' },
+  { period: 'Period 1 Final (Second Half)', start: '10:00', end: '11:00' },
+  { period: 'Period 2', start: '11:05', end: '11:55' },
+  { period: 'Lunch', start: '11:55', end: '12:25' },
+  { period: 'Period 5', start: '12:30', end: '13:20' },
+  { period: 'GRIT 101', start: '13:25', end: '13:45' },
+  { period: 'Period 4 Final (First Half)', start: '13:50', end: '14:50' },
+  { period: 'Period 4 Final (Second Half)', start: '14:50', end: '15:50' }
+];
+
+
 
 var schedule = [];
   
@@ -80,6 +114,12 @@ var schedule = [];
     else{
       document.getElementById("scheduleName").innerHTML = schoolAcronym+" Tuesday-Friday Schedule";
     }
+
+    // FINALS UPDATE
+    if (currentDay == 3 && schoolAcronym == "WHS"){
+      document.getElementById("scheduleName").innerHTML = "WHS Wednesday Finals Schedule";
+    }
+
   
     // Check if it's a weekend (Saturday or Sunday)
     if ((currentDay == 0 || currentDay == 6) && schoolAcronym != "DEMO" && schoolAcronym != "CUSTOM") {
@@ -301,6 +341,10 @@ function setScheduleVar(monSchedVar,ttfSchedVar){
   }
   else{
     schedule = ttfSchedVar;
+  }
+
+  if(currentDay == 3 && schoolAcronym == "WHS"){
+    schedule = wednesdayFinalsSchedule;
   }
 }
 
