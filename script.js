@@ -136,13 +136,13 @@ var schedule = [];
         const formattedSecondsLeft = secondsLeft.toString().padStart(2, '0');
         const formattedMinutesLeft = minutesLeft.toString().padStart(2, '0');
         document.getElementById('time-left').textContent = `${formattedMinutesLeft}:${formattedSecondsLeft}`;
-        document.getElementById("title").innerHTML = `Class Clock - ${formattedMinutesLeft}:${formattedSecondsLeft}`;
+        document.getElementById("title").innerHTML = `${formattedMinutesLeft}:${formattedSecondsLeft} - Class Clock`;
       }
       else{
         const formattedSecondsLeft = secondsLeft.toString().padStart(2, '0');
         const formattedMinutesLeft = minutesLeft.toString().padStart(2, '0');
         document.getElementById('time-left').textContent = `${formattedMinutesLeft}:${formattedSecondsLeft} remaining`;
-        document.getElementById("title").innerHTML = `Class Clock - ${formattedMinutesLeft}:${formattedSecondsLeft}`;
+        document.getElementById("title").innerHTML = `${formattedMinutesLeft}:${formattedSecondsLeft} - Class Clock`;
       }
       document.getElementById('period-progress').textContent = `Period Progress: ${periodProgress.toFixed(1)}%`;
   
@@ -168,6 +168,7 @@ var schedule = [];
       document.getElementById('day-progress').textContent = '';
       document.getElementById('period-progress').textContent = '';
       document.getElementById("target-battery").innerHTML = "";
+      document.getElementById("title").innerHTML = "Class Clock";
     }
   }
 
