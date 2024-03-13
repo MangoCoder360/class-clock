@@ -41,6 +41,15 @@ function createCssGradientFromColors(){
     const color1 = document.getElementById('color1').value;
     const color2 = document.getElementById('color2').value;
     const color3 = document.getElementById('color3').value;
-    const cssGradient = "linear-gradient(90deg, "+color1+" 0%, "+color2+" 50%, "+color3+" 100%)";
+    const rotation = document.getElementById('rotation').value;
+    if (rotation > 360){
+        document.getElementById('rotation').value = 360;
+        setTimeout(compileTheme, 200);
+    }
+    if (rotation < 0){
+        document.getElementById('rotation').value = 0;
+        setTimeout(compileTheme, 200);
+    }
+    const cssGradient = "linear-gradient("+rotation+"deg, "+color1+" 0%, "+color2+" 50%, "+color3+" 100%)";
     return cssGradient;
 }

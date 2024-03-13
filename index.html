@@ -43,9 +43,9 @@
             <button onclick="window.location.href='/custom-schedule-editor.html'">Edit Custom Schedule</button>
             <button onclick="window.location.href='/school-select.html'">Change School</button>
             <div id="bgImg">
-                <a href="/?theme=img">Enable background image</a>
                 <h1 class="modal-title fs-6">Themes:</h1>
                 <a href="/?theme=default">Default</a><br>
+                <a href="/?theme=old-default">Original</a><br>
                 <a href="/?theme=romania">Romania</a><br>
                 <a href="/?theme=woodland">Woodland</a><br>
                 <a href="/?theme=bah-bah">Bah Bah</a><br>
@@ -63,7 +63,8 @@
     body{
         text-align: center;
         font-family: sans-serif;
-        background: linear-gradient(90deg, rgba(29,140,0,1) 0%, rgba(190,195,255,1) 50%, rgba(255,188,0,1) 100%);
+        background: linear-gradient(70deg, #27a051 0%, #b18610 50%, #850505 100%);
+        color: white;
         user-select: none;
         padding: 3px;
         margin: 3px;
@@ -71,6 +72,11 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        height: 100%;
+    }
+    html{
+        height:100%;
+        overflow-y: hidden;
     }
     h2{
         font-size: 4em;

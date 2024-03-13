@@ -1,3 +1,7 @@
+setTimeout(function() {
+  location.reload();
+}, 300000);
+
 var fsMode = false;
 var schoolAcronym;
 var showIdealBattery = false;
@@ -215,10 +219,16 @@ function toggleTextColor(){
 
 function switchTheme(themeName){
   if(themeName == "default"){
+    document.body.style.background = "linear-gradient(70deg, #27a051 0%, #b18610 50%, #850505 100%)";
+    document.getElementById("body").style.color = "white";
+  }
+  if(themeName == "old-default"){
     document.body.style.background = "linear-gradient(90deg, rgba(29,140,0,1) 0%, rgba(190,195,255,1) 50%, rgba(255,188,0,1) 100%)";
+    document.getElementById("body").style.color = "black";
   }
   if(themeName == "romania"){
     document.body.style.background = "linear-gradient(90deg, #002B7F, #FCD116, #CE1126)";
+    document.getElementById("body").style.color = "black";
   }
   if(themeName == "woodland"){
     document.body.style.background = "linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(3,75,0,1) 100%)";
@@ -226,6 +236,7 @@ function switchTheme(themeName){
   }
   if(themeName == "bah-bah"){
     document.body.style.background = "linear-gradient(90deg, #0cd46d 0%, #1bc4d0 50%, #144ac8 100%)"
+    document.getElementById("body").style.color = "black";
   }
   if(themeName == "craig"){
     document.body.style.background = "linear-gradient(90deg, #ff0000 0%, #85008f 50%, #0008ff 100%)"
@@ -242,6 +253,10 @@ function setThemeFromUrl() {
     if(theme == "img"){
       enableBgImg();
     }
+    else if (theme == "custom"){
+      var data = JSON.parse(Cookies.get('custom-theme'));
+      loadCustomTheme(data);
+    }
     else{
       switchTheme(theme);
     }
@@ -249,16 +264,21 @@ function setThemeFromUrl() {
 }
 
 function importTheme(){
-      const data = JSON.parse(prompt("Paste the theme data here:"));
-      if(data.themeVersion != 1){
-        alert("This theme is not compatible with this version of Class Clock.")
-      }
-      else{
-        document.body.style.background = data.cssGradient;
-        document.getElementById("body").style.color = data.fontColor;
-        document.getElementById("bgImg").innerHTML = 'Custom theme "'+data.themeName+'" is active.';
-      }
-  reader.readAsText(file);
+      const data = prompt("Paste the theme data here:");
+      Cookies.set('custom-theme', data, { expires: 30 });
+      loadCustomTheme(JSON.parse(data));
+      setTimeout(function(){ window.location.href = "/?theme=custom"; }, 300);
+}
+
+function loadCustomTheme(data){
+  if(data.themeVersion != 1){
+    alert("This theme is not compatible with this version of Class Clock.")
+  }
+  else{
+    document.body.style.background = data.cssGradient;
+    document.getElementById("body").style.color = data.fontColor;
+    document.getElementById("bgImg").innerHTML += '<br>Custom theme "'+data.themeName+'" is active.<br>';
+  }
 }
 
 function setScheduleFromSchool(){
