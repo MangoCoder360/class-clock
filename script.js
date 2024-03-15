@@ -146,7 +146,7 @@ var schedule = [];
         const formattedSecondsLeft = secondsLeft.toString().padStart(2, '0');
         const formattedMinutesLeft = minutesLeft.toString().padStart(2, '0');
         // if page is display.html, do not add remaining to the end
-        if (window.location.href.indexOf("display.html") > -1) {
+        if (window.location.href.indexOf("display.html") > -1 || window.location.href.indexOf("display") > -1) {
           document.getElementById('time-left').textContent = `${formattedMinutesLeft}:${formattedSecondsLeft}`;
         }
         else {
