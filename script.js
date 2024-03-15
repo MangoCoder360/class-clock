@@ -145,7 +145,13 @@ var schedule = [];
       else{
         const formattedSecondsLeft = secondsLeft.toString().padStart(2, '0');
         const formattedMinutesLeft = minutesLeft.toString().padStart(2, '0');
+        // if page is display.html, do not add remaining to the end
+        if (window.location.href.indexOf("display.html") > -1) {
+          document.getElementById('time-left').textContent = `${formattedMinutesLeft}:${formattedSecondsLeft}`;
+        }
+        else {
         document.getElementById('time-left').textContent = `${formattedMinutesLeft}:${formattedSecondsLeft} remaining`;
+        }
         document.getElementById("title").innerHTML = `${formattedMinutesLeft}:${formattedSecondsLeft} - Class Clock`;
       }
       document.getElementById('period-progress').textContent = `Period Progress: ${periodProgress.toFixed(1)}%`;
