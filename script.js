@@ -1,5 +1,7 @@
-setTimeout(function() {
-  location.reload();
+setInterval(function() {
+  if (navigator.onLine) {
+    window.location.reload();
+  }
 }, 300000);
 
 var fsMode = false;
