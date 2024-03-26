@@ -72,6 +72,28 @@ const wmsMondaySchedule = [
   { period: 'Trojan Time', start: '14:58', end: '15:25' },
 ];
 
+const whsEarlyReleaseSchedule = [
+  { period: 'Before School', start: '08:45', end: '09:00' },
+  { period: 'Period 1', start: '09:00', end: '09:50' },
+  { period: 'Passing Time', start: '09:50', end: '09:55' },
+  { period: 'Period 2', start: '09:55', end: '10:45' },
+  { period: 'Passing Time', start: '10:45', end: '10:50' },
+  { period: 'Period 3', start: '10:50', end: '11:40' },
+  { period: 'Passing Time', start: '11:40', end: '11:45' },
+  { period: 'GRIT 101', start: '11:45', end: '12:10' },
+  { period: 'Passing Time', start: '12:10', end: '12:15' },
+  { period: 'Lunch', start: '12:15', end: '12:50' },
+];
+
+const wmsEarlyReleaseSchedule = [
+  { period: 'Before School', start: '08:45', end: '09:31' },
+  { period: 'Period 1', start: '09:35', end: '10:19' },
+  { period: 'Period 2', start: '10:23', end: '11:07' },
+  { period: 'Lunch / Recess', start: '11:07', end: '11:37' },
+  { period: 'Period 4', start: '11:41', end: '12:25' }
+];
+
+
 
 
 var schedule = [];
@@ -84,7 +106,7 @@ var schedule = [];
       document.getElementById("scheduleName").innerHTML = schoolAcronym+" Monday Schedule";
     }
     else{
-      document.getElementById("scheduleName").innerHTML = schoolAcronym+" Tuesday-Friday Schedule";
+      document.getElementById("scheduleName").innerHTML = schoolAcronym+" Early Release Schedule";
     }
   
     // Check if it's a weekend (Saturday or Sunday)
@@ -299,12 +321,12 @@ function setScheduleFromSchool(){
   if(schoolName == "whs"){
     console.log("School = WHS");
     schoolAcronym = "WHS";
-    setScheduleVar(whsmondaySchedule,whsTueThruFriSchedule);
+    setScheduleVar(whsmondaySchedule,whsEarlyReleaseSchedule);
   }
   else if(schoolName == "wms"){
     console.log("School = WMS");
     schoolAcronym = "WMS";
-    setScheduleVar(wmsMondaySchedule,wmsTueThruFriSchedule);
+    setScheduleVar(wmsMondaySchedule,wmsEarlyReleaseSchedule);
   }
   else if(schoolName == "demo"){
     console.log("School = DEMO");
