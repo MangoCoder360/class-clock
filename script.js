@@ -280,15 +280,24 @@ function setThemeFromUrl() {
   const urlParams = new URLSearchParams(window.location.search);
   const theme = urlParams.get('theme');
   if (theme) {
-    if(theme == "img"){
-      enableBgImg();
-    }
-    else if (theme == "custom"){
+    if (theme == "custom"){
       var data = JSON.parse(Cookies.get('custom-theme'));
       loadCustomTheme(data);
     }
     else{
       switchTheme(theme);
+    }
+
+    Cookies.set('theme', theme, { expires: 30 });
+    document.location.href = "/";
+  }
+  else if(Cookies.get('theme') != undefined){
+    if(Cookies.get('theme') == "custom"){
+      var data = JSON.parse(Cookies.get('custom-theme'));
+      loadCustomTheme(data);
+    }
+    else{
+      switchTheme(Cookies.get('theme'));
     }
   }
 }
