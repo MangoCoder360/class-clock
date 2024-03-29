@@ -88,10 +88,18 @@
   </div>
 </html>
 <script>
+  var allThemes = [];
     function getThemes(){
         fetch("https://classclock-api.reubenschiopu.com/themes/getall")
         .then(response => response.json())
         .then(data => {
+          var randomTheme = {
+            name: "Install a Random Theme",
+            theme_data: "random",
+            author: ""
+          }
+          data.push(randomTheme);
+          allThemes = data;
             var cardContainer = document.getElementById("card-container");
             for(var i = data.length-1; i >= 0; i--){
                 (function() {
@@ -106,7 +114,11 @@
                     themeCardTitle.innerText = theme.name;
                     var themeCardText = document.createElement("p");
                     themeCardText.classList.add("card-text");
-                    themeCardText.innerText = "Submitted By: " + theme.author;
+                    if (theme.author == "") {
+                        themeCardText.innerText = "";
+                    } else{
+                      themeCardText.innerText = "Submitted By: " + theme.author;
+                    }
                     var themeCardButton = document.createElement("button");
                     themeCardButton.classList.add("btn");
                     themeCardButton.classList.add("btn-primary");
@@ -138,6 +150,37 @@
             })
         });
         $("#submitTheme").modal("hide");
+        var submittedThemes = Cookies.get("submitted-themes");
+        if(submittedThemes == undefined){
+            submittedThemes = [];
+        } else {
+            submittedThemes = JSON.parse(submittedThemes);
+        }
+        submittedThemes.push(themeData);
+        Cookies.set("submitted-themes", JSON.stringify(submittedThemes), { expires: 30 });
+        setTimeout(() => {
+            window.location.reload();
+        }, 700);
+    }
+
+    function deleteTheme(themeData){
+        fetch("https://classclock-api.reubenschiopu.com/themes/delete", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                theme_data: themeData
+            })
+        });
+        var submittedThemes = Cookies.get("submitted-themes");
+        if(submittedThemes == undefined){
+            submittedThemes = [];
+        } else {
+            submittedThemes = JSON.parse(submittedThemes);
+        }
+        submittedThemes.splice(submittedThemes.indexOf(themeData), 1);
+        Cookies.set("submitted-themes", JSON.stringify(submittedThemes), { expires: 30 });
         setTimeout(() => {
             window.location.reload();
         }, 700);
@@ -153,6 +196,13 @@
                 progressBar.classList.add("bg-success");
                 Cookies.set("theme", "custom", { expires: 30 });
                 Cookies.set("custom-theme", themeData, { expires: 30 });
+                if(themeData == "random"){
+                  var randomTheme = allThemes[Math.floor(Math.random() * allThemes.length)];
+                  while(randomTheme.themeData == "random"){
+                    randomTheme = allThemes[Math.floor(Math.random() * allThemes.length)];
+                  }
+                  Cookies.set("custom-theme", randomTheme.theme_data, { expires: 30 });
+                }
                 setInterval(() => {
                     progressBar.style.width = "0%";
                     $("#installingTheme").modal("hide");
