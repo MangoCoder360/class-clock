@@ -276,7 +276,6 @@ function switchTheme(themeName){
 
 function setThemeFromUrl() {
   setScheduleFromSchool();
-  updateSchedule();
   const urlParams = new URLSearchParams(window.location.search);
   const theme = urlParams.get('theme');
   if (theme) {
@@ -300,6 +299,8 @@ function setThemeFromUrl() {
       switchTheme(Cookies.get('theme'));
     }
   }
+
+  updateSchedule();
 }
 
 function importTheme(){
