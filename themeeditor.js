@@ -2,14 +2,20 @@ function compileTheme(){
     const cssGradient = createCssGradientFromColors();
     const fontColor = document.getElementById('fontColor').value;
     const themeName = document.getElementById('themeName').value;
+    const themeFont = document.getElementById('themeFont').value;
     const theme = {
         cssGradient,
         fontColor,
         themeName,
+        themeFont,
         themeVersion: 1
     };
     const themeJSON = JSON.stringify(theme);
     document.getElementById('themeJSON').innerHTML = themeJSON;
+
+    document.getElementById('themePreview').style.background = cssGradient;
+    document.getElementById('themePreview').style.color = fontColor;
+    document.getElementById('themePreviewText').style.fontFamily = themeFont;
 }
 
 function exportTheme(){

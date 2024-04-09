@@ -5,11 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CC Theme Editor</title>
     <script src="themeeditor.js"></script>
-    <style>
-        html{
-            font-family: sans-serif;
-        }
-    </style>
 </head>
 <body>
     <h1>Class Clock Theme Editor</h1>
@@ -26,10 +21,18 @@
         <input type="number" value="0" min="0" max="360" id="rotation" name="rotation"><br><br>
         <label for="themeName">Theme Name:</label>
         <input type="text" id="themeName" name="themeName"><br><br>
+        <label for="themeFont">Theme Font:</label>
+        <select id="themeFont" name="themeFont">
+            <option value="sans-serif">Sans-Serif</option>
+            <option value="monospace">Monospace</option>
+            <option value="serif">Serif</option>
+        </select><br><br>
         <input type="button" value="Compile Theme" onclick="compileTheme()">
-    </form><br><br>
+    </form><br>
     <p style="font-family: monospace;" id="themeJSON">Compiled theme goes here. Copy this and paste it into the site to import the theme.</p>
-    <br><br><br>
+    <br>
+    <div id="themePreview"><h2 id="themePreviewText">Theme Preview</h2></div>
+    <br>
     <h2><a href="/">Back to Class Clock</a></h2>
     <br><br><input type="button" value="Export Theme as File" onclick="exportTheme()">
 </body>
@@ -44,3 +47,20 @@
 
   gtag('config', 'G-7WGT48E713');
 </script>
+<style>
+    html{
+        font-family: sans-serif;
+    }
+
+    #themePreview{
+        text-align: center;
+        background: linear-gradient(70deg, #27a051 0%, #b18610 50%, #850505 100%);
+        color: white;
+        user-select: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+</style>
