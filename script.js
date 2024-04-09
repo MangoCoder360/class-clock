@@ -106,7 +106,7 @@ var schedule = [];
       document.getElementById("scheduleName").innerHTML = schoolAcronym+" Monday Schedule";
     }
     else{
-      document.getElementById("scheduleName").innerHTML = schoolAcronym+" Early Release Schedule";
+      document.getElementById("scheduleName").innerHTML = schoolAcronym+" Tuesday-Friday Schedule";
     }
   
     // Check if it's a weekend (Saturday or Sunday)
@@ -330,12 +330,12 @@ function setScheduleFromSchool(){
   if(schoolName == "whs"){
     console.log("School = WHS");
     schoolAcronym = "WHS";
-    setScheduleVar(whsmondaySchedule,whsEarlyReleaseSchedule);
+    setScheduleVar(whsmondaySchedule,whsTueThruFriSchedule);
   }
   else if(schoolName == "wms"){
     console.log("School = WMS");
     schoolAcronym = "WMS";
-    setScheduleVar(wmsMondaySchedule,wmsEarlyReleaseSchedule);
+    setScheduleVar(wmsMondaySchedule,whsTueThruFriSchedule);
   }
   else if(schoolName == "demo"){
     console.log("School = DEMO");
