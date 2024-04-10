@@ -336,7 +336,7 @@ function setScheduleFromSchool(){
   else if(schoolName == "wms"){
     console.log("School = WMS");
     schoolAcronym = "WMS";
-    setScheduleVar(wmsMondaySchedule,whsTueThruFriSchedule);
+    setScheduleVar(wmsMondaySchedule,wmsTueThruFriSchedule);
   }
   else if(schoolName == "demo"){
     console.log("School = DEMO");
