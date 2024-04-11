@@ -317,6 +317,9 @@ function loadCustomTheme(data){
   else{
     document.body.style.background = data.cssGradient;
     document.getElementById("body").style.color = data.fontColor;
+    if(data.themeFont != undefined){
+      document.getElementById("body").style.fontFamily = data.themeFont;
+    }
     document.getElementById("bgImg").innerHTML += '<br>Custom theme "'+data.themeName+'" is active.<br>';
   }
 }
