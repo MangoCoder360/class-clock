@@ -59,3 +59,9 @@ function createCssGradientFromColors(){
     const cssGradient = "linear-gradient("+rotation+"deg, "+color1+" 0%, "+color2+" 50%, "+color3+" 100%)";
     return cssGradient;
 }
+
+setTimeout(() => {
+    setInterval(() => {
+        compileTheme();
+    }, 100);
+}, 3000);
