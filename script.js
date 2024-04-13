@@ -99,7 +99,14 @@ const wmsEarlyReleaseSchedule = [
 var schedule = [];
   
   function updateSchedule() {
-    const currentTime = new Date();
+    var currentTime;
+    var timeOffset = Cookies.get('timeOffset');
+    if(timeOffset != undefined && timeOffset != "" && timeOffset != null){
+      currentTime = new Date(new Date().getTime() + timeOffset*1000);
+    }
+    else{
+      currentTime = new Date();
+    }
     const currentDay = currentTime.getDay(); // Get the current day of the week (0 = Sunday, 1 = Monday, ...)
 
     if(currentDay == 1){
@@ -397,3 +404,17 @@ function loadCustomSchedule(){
       window.location.href = "/custom-schedule-editor.html";
   }
 }
+
+function saveTimeOffset(){
+  var offset = document.getElementById("timeOffset").value;
+  if(offset > -60 && offset < 60){
+    Cookies.set('timeOffset', offset, { expires: 60 });
+  }
+}
+
+setTimeout(() => {
+  var timeOffset = Cookies.get('timeOffset');
+  if(timeOffset != undefined && timeOffset != "" && timeOffset != null){
+    document.getElementById("timeOffset").value = timeOffset;
+  }
+}, 2000);
