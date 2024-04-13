@@ -60,6 +60,11 @@ function createCssGradientFromColors(){
     return cssGradient;
 }
 
+function copyTheme(){
+    const themeJSON = document.getElementById('themeJSON').innerHTML;
+    navigator.clipboard.writeText(themeJSON);
+}
+
 setTimeout(() => {
     setInterval(() => {
         compileTheme();

@@ -1,8 +1,10 @@
 setInterval(function() {
-  if (navigator.onLine) {
-    window.location.reload();
-  }
-}, 300000);
+  fetch("https://ccu-api.reuben.zip/api/class-clock/1").then(function(response) {
+    if(response.status == 200){
+      location.reload();
+    }
+  });
+}, 800000);
 
 var fsMode = false;
 var schoolAcronym;
