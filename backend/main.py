@@ -35,5 +35,27 @@ def submit_theme():
     db.insert_one(theme)
     return "200 OK"
 
+@app.route("/admin/login", methods=["POST"])
+def admin_login():
+    requestBody = json.loads(request.data.decode("utf-8"))
+    if requestBody["username"] == os.getenv("ADMIN_USERNAME") and requestBody["password"] == os.getenv("ADMIN_PASSWORD"):
+        return "200 OK"
+    return "401 Unauthorized",401
+
+@app.route("/admin/update-theme", methods=["POST"])
+def updateTheme():
+    requestBody = json.loads(request.data.decode("utf-8"))
+    try:
+        if requestBody["username"] != os.getenv("ADMIN_USERNAME") or requestBody["password"] != os.getenv("ADMIN_PASSWORD"):
+            return "401 Unauthorized",401
+        valueToChange = requestBody["valueToChange"]
+        newValue = requestBody["newValue"]
+        themeName = requestBody["themeName"]
+
+        db.update_one({"name":themeName}, {"$set": {valueToChange: newValue}})    
+    except:
+        return "400 Bad Request",400
+    return "200 OK"
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=3005)

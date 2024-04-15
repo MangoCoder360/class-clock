@@ -108,7 +108,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary" onclick="">Login</button>
+          <button type="button" class="btn btn-primary" onclick="login()">Login</button>
         </div>
       </div>
     </div>
@@ -173,6 +173,41 @@
                       trash.style.top = "5px";
                       trash.style.right = "5px";
                       themeCard.appendChild(trash);
+                    }
+                    if(Cookies.get("admin")){
+                      var featureButton = document.createElement("button");
+                      featureButton.classList.add("btn");
+                      featureButton.classList.add("btn-secondary");
+                      if(theme.isFeatured){
+                        featureButton.innerText = "Unfeature";
+                      } else {
+                        featureButton.innerText = "Feature";
+                      }
+                      featureButton.style.position = "absolute";
+                      featureButton.style.bottom = "5px";
+                      featureButton.style.right = "5px";
+                      featureButton.onclick = function(){
+                        alert("featured theme");
+                        location.reload();
+                      }
+                      themeCard.appendChild(featureButton);
+
+                      var trashButton = document.createElement("button");
+                      trashButton.classList.add("btn");
+                      trashButton.classList.add("btn-secondary");
+                      if(theme.isTrash){
+                        trashButton.innerText = "Untrash";
+                      } else {
+                        trashButton.innerText = "Trash";
+                      }
+                      trashButton.style.position = "absolute";
+                      trashButton.style.bottom = "60px";
+                      trashButton.style.right = "5px";
+                      trashButton.onclick = function(){
+                        alert("trashed theme");
+                        location.reload();
+                      }
+                      themeCard.appendChild(trashButton);
                     }
                     themeCardBody.appendChild(themeCardTitle);
                     themeCardBody.appendChild(themeCardText);
@@ -265,6 +300,50 @@
                 progressBar.style.width = currentWidth + randNumber + "%";
             }
         }, 200);
+    }
+
+    function login(){
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      fetch("https://classclock-api.reubenschiopu.com/admin/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          username: username,
+          password: password
+        })
+      }).then(response => response.json()).then(data => {
+        if(data.success){
+          Cookies.set("admin", true, { expires: 5 });
+          Cookies.set("admin-username", username, { expires: 5 });
+          Cookies.set("admin-password", password, { expires: 5 });
+          window.location.reload();
+        } else {
+          alert("Invalid Credentials");
+        }
+        $("#adminLogin").modal("hide");
+      });
+    }
+
+    function updateTheme(themeName, valueToChange, newValue){
+      fetch("https://classclock-api.reubenschiopu.com/admin/update-theme", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          themeName: themeName,
+          valueToChange: valueToChange,
+          newValue: newValue,
+          username: Cookies.get("admin-username"),
+          password: Cookies.get("admin-password")
+        })
+      });
+      setTimeout(() => {
+        window.location.reload();
+      }, 700);
     }
 </script>
 <style>
