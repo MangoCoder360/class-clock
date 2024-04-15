@@ -166,6 +166,14 @@
                       star.style.right = "5px";
                       themeCard.appendChild(star);
                     }
+                    if(theme.isTrash){
+                      var trash = document.createElement("span");
+                      trash.innerHTML = '<span data-bs-toggle="tooltip" data-bs-title="Trash Theme" class="material-symbols-outlined">block</span>';
+                      trash.style.position = "absolute";
+                      trash.style.top = "5px";
+                      trash.style.right = "5px";
+                      themeCard.appendChild(trash);
+                    }
                     themeCardBody.appendChild(themeCardTitle);
                     themeCardBody.appendChild(themeCardText);
                     themeCardBody.appendChild(themeCardButton);
