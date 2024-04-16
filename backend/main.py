@@ -39,8 +39,10 @@ def submit_theme():
 def admin_login():
     requestBody = json.loads(request.data.decode("utf-8"))
     if requestBody["username"] == os.getenv("ADMIN_USERNAME") and requestBody["password"] == os.getenv("ADMIN_PASSWORD"):
-        return "200 OK"
-    return "401 Unauthorized",401
+        response = {"success": True}
+        return json.dumps(response)
+    response = {"success": False}
+    return json.dumps(response)
 
 @app.route("/admin/update-theme", methods=["POST"])
 def updateTheme():
