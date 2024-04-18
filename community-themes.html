@@ -9,6 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,0,0" />
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Seaweed+Script&family=Permanent+Marker&family=Roboto:wght@100&display=swap" rel="stylesheet">
 </head>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
@@ -63,6 +64,9 @@
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="submitThemeLabel">Submit a Theme</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-header">
+          <h1 class="modal-title fs-6" id="submitThemeLabel"><a href="/themeeditor.html">Theme Editor</a></h1>
         </div>
         <div class="modal-body">
             <label for="themedata" class="form-label">Theme Data</label>
@@ -120,7 +124,7 @@
 <script>
   setTimeout(() => {
     getThemes();
-  }, Math.floor(Math.random() * 2000) + 200);
+  }, Math.floor(Math.random() * 1000) + 200);
 
 
   var allThemes = [];
@@ -140,6 +144,16 @@
                 (function() {
                     var theme = data[i];
                     var themeCard = document.createElement("div");
+                    themeCard.onmouseover = function(){
+                      themeCard.style.background = JSON.parse(theme.theme_data).cssGradient;
+                      themeCard.style.fontFamily = JSON.parse(theme.theme_data).themeFont;
+                      themeCard.style.color = JSON.parse(theme.theme_data).fontColor;
+                    }
+                    themeCard.onmouseout = function(){
+                      themeCard.style.background = "";
+                      themeCard.style.fontFamily = "";
+                      themeCard.style.color = "";
+                    }
                     themeCard.classList.add("card");
                     themeCard.classList.add("col-sm-3");
                     var themeCardBody = document.createElement("div");
@@ -299,10 +313,10 @@
                     document.location.href = "/";
                 }, 700);
             } else {
-                var randNumber = Math.floor(Math.random() * 50);
+                var randNumber = Math.floor(Math.random() * 30);
                 progressBar.style.width = currentWidth + randNumber + "%";
             }
-        }, 200);
+        }, 90);
     }
 
     function login(){
@@ -353,8 +367,8 @@
 </script>
 <style>
     #card-container{
-        margin:20px;
-        padding:20px;
+        margin:10px;
+        padding:10px;
     }
 
 
