@@ -218,13 +218,26 @@
                         trashButton.innerText = "Trash";
                       }
                       trashButton.style.position = "absolute";
-                      trashButton.style.bottom = "60px";
+                      trashButton.style.bottom = "50px";
                       trashButton.style.right = "5px";
                       trashButton.onclick = function(){
                         alert("trashed theme");
                         location.reload();
                       }
                       themeCard.appendChild(trashButton);
+
+                      var deleteButton = document.createElement("button");
+                      deleteButton.classList.add("btn");
+                      deleteButton.classList.add("btn-danger");
+                      deleteButton.innerText = "Delete";
+                      deleteButton.style.position = "absolute";
+                      deleteButton.style.bottom = "5px";
+                      deleteButton.style.right = "90px";
+                      deleteButton.onclick = function(){
+                        alert("deleted theme");
+                        location.reload();
+                      }
+                      themeCard.appendChild(deleteButton);
                     }
                     themeCardBody.appendChild(themeCardTitle);
                     themeCardBody.appendChild(themeCardText);
