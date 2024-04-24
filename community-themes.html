@@ -256,6 +256,10 @@
     function submitTheme(){
         var themeData = document.getElementById("themedata").value;
         var name = document.getElementById("name").value;
+        if(themeData.length > 200){
+          alert("Theme too big!");
+          return;
+        }
         fetch("https://classclock-api.reubenschiopu.com/themes/submit", {
             method: "POST",
             headers: {
