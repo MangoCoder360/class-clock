@@ -95,24 +95,6 @@ const wmsEarlyReleaseSchedule = [
   { period: 'Period 4', start: '11:41', end: '12:25' }
 ];
 
-const whsMovingUpDaySchedule = [
-  { period: 'Period 1', start: '09:00', end: '09:40' },
-  { period: 'Passing Time', start: '09:40', end: '09:45' },
-  { period: 'Period 2', start: '09:45', end: '10:25' },
-  { period: 'Passing Time', start: '10:25', end: '10:30' },
-  { period: 'Period 3', start: '10:30', end: '11:10' },
-  { period: 'Passing Time', start: '11:10', end: '11:15' },
-  { period: 'Period 4', start: '11:15', end: '11:55' },
-  { period: 'Lunch', start: '11:55', end: '12:30' },
-  { period: 'Passing Time', start: '12:30', end: '12:35' },
-  { period: 'Period 5', start: '12:35', end: '13:15' },
-  { period: 'Passing Time', start: '13:15', end: '13:20' },
-  { period: 'Period 6', start: '13:20', end: '13:50' },
-  { period: 'Passing Time', start: '13:50', end: '13:55' },
-  { period: 'Moving Up Assembly', start: '13:55', end: '15:02' },
-  { period: 'Yearbook Distribution', start: '15:02', end: '15:50' }
-]
-
 
 
 
@@ -133,12 +115,7 @@ var schedule = [];
       document.getElementById("scheduleName").innerHTML = schoolAcronym+" Monday Schedule";
     }
     else{
-      if(schoolAcronym == "WHS"){
-        document.getElementById("scheduleName").innerHTML = schoolAcronym+" Moving Up Assembly Schedule";
-      }
-      else{
-        document.getElementById("scheduleName").innerHTML = schoolAcronym+" Tuesday-Friday Schedule";
-      }
+      document.getElementById("scheduleName").innerHTML = schoolAcronym+" Tuesday-Friday Schedule";
     }
   
     // Check if it's a weekend (Saturday or Sunday)
@@ -366,7 +343,7 @@ function setScheduleFromSchool(){
   if(schoolName == "whs"){
     console.log("School = WHS");
     schoolAcronym = "WHS";
-    setScheduleVar(whsmondaySchedule,whsMovingUpDaySchedule);
+    setScheduleVar(whsmondaySchedule,whsTueThruFriSchedule);
   }
   else if(schoolName == "wms"){
     console.log("School = WMS");
