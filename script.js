@@ -17,21 +17,21 @@ const demoSchedule = [
 ];
 
 const whsTueThruFriSchedule = [
-  { period: 'Before School', start: '08:45', end: '09:00' },
+  { period: 'Before School', start: '08:30', end: '09:00' },
   { period: 'Period 1', start: '09:00', end: '09:55' },
   { period: 'Passing Time', start: '09:55', end: '10:00' },
-  { period: 'Period 2', start: '10:00', end: '10:54' },
-  { period: 'Passing Time', start: '10:54', end: '10:59' },
-  { period: 'Period 3', start: '10:59', end: '11:53' },
-  { period: 'Passing Time', start: '11:53', end: '11:58' },
-  { period: 'Lunch', start: '11:58', end: '12:23' },
-  { period: 'Period 4', start: '12:28', end: '13:22' },
-  { period: 'Passing Time', start: '13:22', end: '13:27' },
-  { period: 'GRIT 101', start: '13:27', end: '13:52' },
-  { period: 'Passing Time', start: '13:52', end: '13:57' },
-  { period: 'Period 5', start: '13:57', end: '14:51' },
-  { period: 'Passing Time', start: '14:51', end: '14:56' },
-  { period: 'Period 6', start: '14:56', end: '15:50' },
+  { period: 'Period 2', start: '10:00', end: '10:53' },
+  { period: 'Passing Time', start: '10:53', end: '10:58' },
+  { period: 'GRIT 101', start: '10:58', end: '11:23' },
+  { period: 'Lunch', start: '11:23', end: '12:53' },
+  { period: 'Passing Time', start: '12:53', end: '12:58' },
+  { period: 'Period 3', start: '12:58', end: '12:51' },
+  { period: 'Passing Time', start: '12:51', end: '12:56' },
+  { period: 'Period 4', start: '12:56', end: '13:49' },
+  { period: 'Passing Time', start: '13:49', end: '13:59' },
+  { period: 'Period 5', start: '13:59', end: '14:52' },
+  { period: 'Passing Time', start: '14:52', end: '14:57' },
+  { period: 'Period 6', start: '14:57', end: '15:50' },
 ];
 
 const whsmondaySchedule = [
