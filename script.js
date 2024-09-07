@@ -50,28 +50,39 @@ const whsmondaySchedule = [
 ];
 
 const wmsTueThruFriSchedule = [
-  { period: 'Period 1/Homeroom', start: '08:45', end: '09:34' },
-  { period: 'Period 2', start: '09:38', end: '10:26' },
-  { period: 'Period 3', start: '10:30', end: '11:18' },
-  { period: '6th Grade Lunch / Recess', start: '11:22', end: '11:57' },
-  { period: '5th Grade Lunch / Recess', start: '11:22', end: '11:57' },
-  { period: 'Period 4', start: '12:01', end: '12:49' },
-  { period: 'Period 5', start: '12:53', end: '13:41' },
-  { period: 'Period 6', start: '13:45', end: '14:33' },
-  { period: 'Period 7', start: '14:37', end: '15:25' },
+  { period: 'Period 1', start: '08:45', end: '09:40' },
+  { period: 'Passing Time', start: '09:40', end: '09:44' },
+  { period: 'Period 2', start: '09:44', end: '10:31' },
+  { period: 'Passing Time', start: '10:31', end: '10:35' },
+  { period: 'Period 3', start: '10:35', end: '11:22' },
+  { period: 'Passing Time', start: '11:22', end: '11:26' },
+  { period: 'Period 4', start: '11:26', end: '12:13' },
+  { period: 'Passing Time', start: '12:13', end: '12:17' },
+  { period: 'Lunch / Recess', start: '12:17', end: '12:52' },
+  { period: 'Passing Time', start: '12:52', end: '12:56' },
+  { period: 'Period 5', start: '12:56', end: '13:43' },
+  { period: 'Passing Time', start: '13:43', end: '13:47' },
+  { period: 'Period 6', start: '13:47', end: '14:34' },
+  { period: 'Passing Time', start: '14:34', end: '14:38' },
+  { period: 'Period 7', start: '14:38', end: '15:25' }
 ];
 
 const wmsMondaySchedule = [
-  { period: 'Period 1', start: '10:00', end: '10:33' },
-  { period: 'Period 2', start: '10:37', end: '11:10' },
-  { period: 'Period 3', start: '11:14', end: '11:47' },
-  { period: '6th Grade Lunch / Recess', start: '11:47', end: '12:22' },
-  { period: '5th Grade Lunch / Recess', start: '11:47', end: '12:22' },
-  { period: 'Period 4', start: '12:26', end: '13:03' },
-  { period: 'Period 5', start: '13:07', end: '13:40' },
-  { period: 'Period 6', start: '13:44', end: '14:17' },
-  { period: 'Period 7', start: '14:21', end: '14:54' },
-  { period: 'Trojan Time', start: '14:58', end: '15:25' },
+  { period: 'Period 1', start: '10:00', end: '10:46' },
+  { period: 'Passing Time', start: '10:46', end: '10:50' },
+  { period: 'Period 2', start: '10:50', end: '11:26' },
+  { period: 'Passing Time', start: '11:26', end: '11:30' },
+  { period: 'Period 3', start: '11:30', end: '12:06' },
+  { period: 'Passing Time', start: '12:06', end: '12:10' },
+  { period: 'Period 4', start: '12:10', end: '12:50' },
+  { period: 'Passing Time', start: '12:50', end: '12:50' },
+  { period: 'Lunch / Recess', start: '12:50', end: '13:25' },
+  { period: 'Passing Time', start: '13:25', end: '13:29' },
+  { period: 'Period 5', start: '13:29', end: '14:05' },
+  { period: 'Passing Time', start: '14:05', end: '14:09' },
+  { period: 'Period 6', start: '14:09', end: '14:45' },
+  { period: 'Passing Time', start: '14:45', end: '14:49' },
+  { period: 'Period 7', start: '14:49', end: '15:25' }
 ];
 
 const whsEarlyReleaseSchedule = [
