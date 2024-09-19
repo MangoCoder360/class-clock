@@ -4,6 +4,7 @@ from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 import json,os
 from dotenv import load_dotenv
+from bson import ObjectId
 
 app = Flask(__name__)
 CORS(app)
@@ -15,7 +16,7 @@ db = client["CLASSCLOCK"]["THEMES"]
 
 @app.route("/themes/getall")
 def get_all_themes():
-    themes = list(db.find())
+    themes = list(db.find().sort([("download_count", -1), ("_id", -1)]))
     for item in themes:
         item['_id'] = str(item['_id'])
     return json.dumps(themes)
@@ -27,12 +28,25 @@ def submit_theme():
         theme = {
             "name": json.loads(requestBody["theme_data"])["themeName"],
             "theme_data": requestBody["theme_data"],
-            "author": requestBody["author"]
+            "author": requestBody["author"],
+            "download_count": 0
         }
     except:
         return "400 Bad Request",400
     
     db.insert_one(theme)
+    return "200 OK"
+
+@app.route("/themes/download", methods=["POST"])
+def download_theme():
+    requestBody = json.loads(request.data.decode("utf-8"))
+    try:
+        id = requestBody["id"]
+        id = ObjectId(id)
+        theme = db.find_one({"_id": id})
+        db.update_one({"_id": id}, {"$set": {"download_count": theme["download_count"] + 1}})
+    except:
+        return "400 Bad Request",400
     return "200 OK"
 
 @app.route("/admin/login", methods=["POST"])

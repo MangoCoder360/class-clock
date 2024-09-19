@@ -37,28 +37,27 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="staticBackdropLabel">Settings</h1>
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">settings & extras</h1>
         </div>
         <div class="modal-body">
-            <button onclick="fsCountdown()">Fullscreen Countdown</button>
-            <button onclick="toggleTextColor()">Toggle Text Color</button>
-            <button onclick="window.location.href='/custom-schedule-editor.html'">Edit Custom Schedule</button>
-            <button onclick="window.location.href='/school-select.html'">Change School</button>
-            <div id="bgImg">
-                <h1 class="modal-title fs-6">Themes:</h1>
-                <a href="/community-themes.html">Browse Community Created Themes</a><br>
-                <a href="/?theme=default">Default</a><br>
-                <a href="/?theme=old-default">Original</a><br>
-                <a href="/?theme=bah-bah">Bah Bah</a><br>
-                <a href="/?theme=craig">Here's Craig to tell you more.</a><br>
-                <br><button onclick="importTheme()">Import a custom theme</button>
-            </div>
+            <button onclick="fsCountdown()">fullscreen countdown</button><br>
+            <button onclick="window.location.href='/custom-schedule-editor.html'">edit custom schedule</button><br>
+            <button onclick="window.location.href='/school-select.html'">change school</button><br>
             <br>
-            <a href="/themeeditor.html">Make your own theme!</a>
+            <a href="/community-themes.html">browse community created themes</a><br>
+            <a href="/?theme=default">reset theme to default</a><br>
+            <a href="/themeeditor.html">theme editor</a>
+            <br>
+            <h1 id="customThemeName" class="modal-title fs-6"></h1>
+            <br>
+            <a href="/display.html">standalone display mode</a>
             <br><br>
-            <a href="/display.html">Standalone Display Mode</a>
+            <input onchange="saveTimeOffset()" style="width:60%;" type="number" id="timeOffset" placeholder="time offset (seconds)">
             <br><br>
-            <input onchange="saveTimeOffset()" style="width:50%;" type="number" id="timeOffset" placeholder="Time Offset (seconds)">
+            <button onclick="importTheme()">import a theme manually</button>
+
+            <br><br><br>
+            <p>made with ❤️ by reuben schiopu</p>
         </div>
       </div>
     </div>
@@ -99,6 +98,12 @@
     }
     #settings,#summer-break-modal{
         color: black;
+        font-family: "Comfortaa", sans-serif;
+    }
+
+    #settings > div > div > div > button{
+        margin: 5px;
+        border-radius: 8px;
     }
 
     #ccu-container{

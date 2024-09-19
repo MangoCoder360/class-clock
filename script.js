@@ -23,9 +23,9 @@ const whsTueThruFriSchedule = [
   { period: 'Period 2', start: '10:00', end: '10:53' },
   { period: 'Passing Time', start: '10:53', end: '10:58' },
   { period: 'GRIT 101', start: '10:58', end: '11:23' },
-  { period: 'Lunch', start: '11:23', end: '12:53' },
-  { period: 'Passing Time', start: '12:53', end: '12:58' },
-  { period: 'Period 3', start: '12:58', end: '12:51' },
+  { period: 'Lunch', start: '11:23', end: '11:53' },
+  { period: 'Passing Time', start: '11:53', end: '11:58' },
+  { period: 'Period 3', start: '11:58', end: '12:51' },
   { period: 'Passing Time', start: '12:51', end: '12:56' },
   { period: 'Period 4', start: '12:56', end: '13:49' },
   { period: 'Passing Time', start: '13:49', end: '13:59' },
@@ -35,13 +35,14 @@ const whsTueThruFriSchedule = [
 ];
 
 const whsmondaySchedule = [
+  { period: 'Before School', start: '10:00', end: '10:15' },
   { period: 'Period 1', start: '10:15', end: '11:05' },
   { period: 'Passing Time', start: '11:05', end: '11:10' },
   { period: 'Period 2', start: '11:10', end: '11:56' },
-  { period: 'Passing Time', start: '11:56', end: '12:01' },
-  { period: 'Period 3', start: '12:01', end: '12:47' },
-  { period: 'Passing Time', start: '12:47', end: '12:52' },
-  { period: 'Lunch', start: '12:52', end: '13:17' },
+  { period: 'Lunch', start: '11:56', end: '12:26' },
+  { period: 'Passing Time', start: '12:26', end: '12:31' },
+  { period: 'Period 3', start: '12:31', end: '13:17' },
+  { period: 'Passing Time', start: '13:17', end: '13:22' },
   { period: 'Period 4', start: '13:22', end: '14:08' },
   { period: 'Passing Time', start: '14:08', end: '14:13' },
   { period: 'Period 5', start: '14:13', end: '14:59' },
@@ -84,29 +85,6 @@ const wmsMondaySchedule = [
   { period: 'Passing Time', start: '14:45', end: '14:49' },
   { period: 'Period 7', start: '14:49', end: '15:25' }
 ];
-
-const whsEarlyReleaseSchedule = [
-  { period: 'Before School', start: '08:45', end: '09:00' },
-  { period: 'Period 1', start: '09:00', end: '09:50' },
-  { period: 'Passing Time', start: '09:50', end: '09:55' },
-  { period: 'Period 2', start: '09:55', end: '10:45' },
-  { period: 'Passing Time', start: '10:45', end: '10:50' },
-  { period: 'Period 3', start: '10:50', end: '11:40' },
-  { period: 'Passing Time', start: '11:40', end: '11:45' },
-  { period: 'GRIT 101', start: '11:45', end: '12:10' },
-  { period: 'Passing Time', start: '12:10', end: '12:15' },
-  { period: 'Lunch', start: '12:15', end: '12:50' },
-];
-
-const wmsEarlyReleaseSchedule = [
-  { period: 'Before School', start: '08:45', end: '09:31' },
-  { period: 'Period 1', start: '09:35', end: '10:19' },
-  { period: 'Period 2', start: '10:23', end: '11:07' },
-  { period: 'Lunch / Recess', start: '11:07', end: '11:37' },
-  { period: 'Period 4', start: '11:41', end: '12:25' }
-];
-
-
 
 
 var schedule = [];
@@ -162,8 +140,8 @@ var schedule = [];
       endTime.setSeconds(0);
 
       const dayEndTime = new Date();
-      dayEndTime.setHours(15);
-      dayEndTime.setMinutes(50);
+      dayEndTime.setHours(Number(schedule[schedule.length-1].end.split(':')[0]));
+      dayEndTime.setMinutes(Number(schedule[schedule.length-1].end.split(':')[1]));
       dayEndTime.setSeconds(0);
   
       const timeLeft = new Date(endTime - currentTime);
@@ -340,7 +318,7 @@ function loadCustomTheme(data){
     if(data.themeFont != undefined){
       document.getElementById("body").style.fontFamily = data.themeFont;
     }
-    document.getElementById("bgImg").innerHTML += '<br>Custom theme "'+data.themeName+'" is active.<br>';
+    document.getElementById("customThemeName").innerHTML += '<br>custom theme "'+data.themeName+'" is active<br>';
   }
 }
 
