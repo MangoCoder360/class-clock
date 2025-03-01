@@ -86,6 +86,34 @@ const wmsMondaySchedule = [
   { period: 'Period 7', start: '14:49', end: '15:25' }
 ];
 
+const dohsMondaySchedule = [
+  { period: 'Block 1', start: '08:30', end: '09:38'},
+  { period: 'Brunch', start: '09:38', end: '09:45'},
+  { period: 'Passing Time', start: '09:45', end: '09:51'},
+  { period: 'Block 2', start: '09:51', end: '10:59'},
+  { period: 'Passing Time', start: '10:59', end: '11:05'},
+  { period: 'Advisory', start: '11:05', end: '11:25'},
+  { period: 'Lunch', start: '11:25', end: '11:55'},
+  { period: 'Passing Time', start: '11:55', end: '12:01'},
+  { period: 'Block 4', start: '12:01', end: '13:09'},
+  { period: 'Passing Time', start: '13:09', end: '13:15'},
+  { period: 'Block 5', start: '13:15', end: '14:23'}
+]
+
+const dohsTuesdayFridaySchedule = [
+  { period: 'Block 1', start: '08:30', end: '09:53' },
+  { period: 'Brunch', start: '09:53', end: '10:00' },
+  { period: 'Passing Time', start: '10:00', end: '10:06' },
+  { period: 'Block 2', start: '10:06', end: '11:29' },
+  { period: 'Passing Time', start: '11:29', end: '11:35' },
+  { period: 'Intervention', start: '11:35', end: '12:11' },
+  { period: 'Lunch', start: '12:11', end: '12:41' },
+  { period: 'Passing Time', start: '12:41', end: '12:47' },
+  { period: 'Block 4', start: '12:47', end: '14:10' },
+  { period: 'Passing Time', start: '14:10', end: '14:16' },
+  { period: 'Block 5', start: '14:16', end: '15:39' }
+];
+
 
 var schedule = [];
   
@@ -146,6 +174,7 @@ var schedule = [];
   
       const timeLeft = new Date(endTime - currentTime);
       const minutesLeft = timeLeft.getMinutes();
+      const totalMinutesLeft = Math.floor(timeLeft / (1000 * 60)); // bugfix to allow minutes over 60
       const secondsLeft = timeLeft.getSeconds();
   
       const periodStart = new Date();
@@ -158,15 +187,21 @@ var schedule = [];
       const periodProgress = (minutesElapsed / totalMinutesInPeriod) * 100;
   
       document.getElementById('period').textContent = currentPeriod.period;
-      if(fsMode){
+      if(fsMode){ // DEPRECATED
         const formattedSecondsLeft = secondsLeft.toString().padStart(2, '0');
         const formattedMinutesLeft = minutesLeft.toString().padStart(2, '0');
         document.getElementById('time-left').textContent = `${formattedMinutesLeft}:${formattedSecondsLeft}`;
         document.getElementById("title").innerHTML = `${formattedMinutesLeft}:${formattedSecondsLeft} - Class Clock`;
       }
-      else{
+      else{ // MAIN TIME CALCULATION LOGIC
+        if (totalMinutesLeft < 1) {
+          var decimalSecondsLeft = secondsLeft + (timeLeft.getMilliseconds() / 1000);
+          finalCountdownAnimation(decimalSecondsLeft, secondsLeft);
+          return;
+        }
+
         const formattedSecondsLeft = secondsLeft.toString().padStart(2, '0');
-        const formattedMinutesLeft = minutesLeft.toString().padStart(2, '0');
+        const formattedMinutesLeft = totalMinutesLeft.toString().padStart(2, '0');
         // if page is display.html, do not add remaining to the end
         if (window.location.href.indexOf("display.html") > -1 || window.location.href.indexOf("display") > -1) {
           document.getElementById('time-left').textContent = `${formattedMinutesLeft}:${formattedSecondsLeft}`;
@@ -204,7 +239,12 @@ var schedule = [];
     }
   }
 
-  setInterval(updateSchedule, 300);
+  //setInterval(updateSchedule, 200);
+  function tick() {
+    updateSchedule();
+    requestAnimationFrame(tick);
+  }
+  setTimeout(tick, 300);
 
 
 function fsCountdown(){
@@ -272,6 +312,7 @@ function switchTheme(themeName){
   }
 }
 
+// JS entrypoint
 function setThemeFromUrl() {
   setScheduleFromSchool();
   const urlParams = new URLSearchParams(window.location.search);
@@ -297,6 +338,8 @@ function setThemeFromUrl() {
       switchTheme(Cookies.get('theme'));
     }
   }
+
+  whatsNewInit();
 
   updateSchedule();
 }
@@ -338,6 +381,11 @@ function setScheduleFromSchool(){
     console.log("School = WMS");
     schoolAcronym = "WMS";
     setScheduleVar(wmsMondaySchedule,wmsTueThruFriSchedule);
+  }
+  else if(schoolName == "dohs"){
+    console.log("School = DOHS");
+    schoolAcronym = "DOHS";
+    setScheduleVar(dohsMondaySchedule,dohsTuesdayFridaySchedule);
   }
   else if(schoolName == "demo"){
     console.log("School = DEMO");
@@ -409,3 +457,62 @@ setTimeout(() => {
     document.getElementById("timeOffset").value = timeOffset;
   }
 }, 2000);
+
+function whatsNewAcknowledge() {
+  $('#whats-new').modal('hide');
+  Cookies.set('lastWhatsNewVersion', document.getElementById("whatsNewVersion").innerHTML, { expires: 365 });
+}
+
+function whatsNewInit() {
+  var lastSeenVersion = Cookies.get('lastWhatsNewVersion');
+  var currentVersion = document.getElementById("whatsNewVersion").innerHTML;
+
+  if (lastSeenVersion != currentVersion) {
+    var showWhatsNew = true;
+  }
+  else {
+    var showWhatsNew = false;
+  }
+
+  if(showWhatsNew){
+    var myModal = new bootstrap.Modal(document.getElementById('whats-new'), {
+        keyboard: false,
+        backdrop: 'static'
+    });
+    myModal.show();
+  }
+}
+
+var lastSecond = 0;
+var curFontSize = 4;
+function finalCountdownAnimation(secondsLeft, formattedSecs){
+  document.getElementById("title").innerHTML = "🚨🚨🚨";
+  document.getElementById("time-left").innerHTML = formattedSecs;
+  document.getElementById("time-left").style.fontSize = curFontSize + "em";
+  document.getElementById("period").style.display = "none";
+  document.getElementById("period-progress").style.display = "none";
+  document.getElementById("day-progress").style.display = "none";
+  document.getElementById("scheduleName").style.display = "none";
+  document.getElementById("ccu-container").style.display = "none";
+  document.getElementById("settings-btn").style.display = "none";
+
+  var blurAmt = Math.pow((61 - secondsLeft) / 40, 15);
+  var darknessAmt = (61 - secondsLeft) / 61;
+
+  document.documentElement.style.filter = "brightness(" + (1.5 - darknessAmt) + ")";
+
+  if(formattedSecs != lastSecond){
+    lastSecond = formattedSecs;
+
+    curFontSize += 0.3;
+  }
+
+  if (formattedSecs == 0) {
+    document.getElementById("time-left").style.display = "none";
+    document.getElementById("body").style.background = "red";
+    document.documentElement.style.filter = "brightness(1)";
+    setTimeout(() => {
+      window.location.reload();
+    }, 3000);
+  }
+}

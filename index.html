@@ -8,10 +8,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://ccu-api.reuben.zip/static/ccu.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Seaweed+Script&family=Permanent+Marker&family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <meta name="apple-mobile-web-app-title" content="Class Clock">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -29,18 +31,17 @@
     <h4 style="display:none;" id="target-battery">0%</h4><br>
     <p id="scheduleName" class="hide">Schedule Name</p><br>
     <div id="ccu-container"><p style="margin-right:7px;" id="ccu">0</p><p>active Class Clock users</p><br></div>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#settings">Settings</button>
+    <button id="settings-btn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#settings">Settings</button>
 </body>
 </html>
 
 <div class="modal fade" id="settings" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="staticBackdropLabel">settings & extras</h1>
         </div>
         <div class="modal-body">
-            <button onclick="fsCountdown()">fullscreen countdown</button><br>
             <button onclick="window.location.href='/custom-schedule-editor.html'">edit custom schedule</button><br>
             <button onclick="window.location.href='/school-select.html'">change school</button><br>
             <br>
@@ -50,14 +51,47 @@
             <br>
             <h1 id="customThemeName" class="modal-title fs-6"></h1>
             <br>
-            <a href="/display.html">standalone display mode</a>
-            <br><br>
+            <!-- <a href="/display.html">standalone display mode</a> -->
+            <br>
             <input onchange="saveTimeOffset()" style="width:60%;" type="number" id="timeOffset" placeholder="time offset (seconds)">
             <br><br>
             <button onclick="importTheme()">import a theme manually</button>
+            <br><br>
+            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#whats-new">what's new?</button>
 
-            <br><br><br>
+            <br><br>
             <p>made with ❤️ by reuben schiopu</p>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="modal fade" id="whats-new" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">what's new in class clock?</h1>
+          <p id="whatsNewVersion" style="font-family: sans-serif; color:rgba(0, 0, 0, 0.2);">v1.1.0</p>
+        </div>
+        <div class="modal-body">
+            <div class="whats-new-item">
+                <h2>what's new</h2>
+                <p>added a <i>what's new</i> page to describe updates</p>
+            </div>
+            <div class="whats-new-item">
+                <h2>final countdown animation</h2>
+                <p>added a new animation to countdown the last minute of class</p>
+            </div>
+            <div class="whats-new-item">
+                <h2>new school</h2>
+                <p>added del oro high school</p>
+            </div>
+            <div class="whats-new-item">
+                <h2>bugfixes</h2>
+                <p>class periods can now be over an hour</p>
+            </div>
+
+            <button onclick="whatsNewAcknowledge()" class="btn btn-outline-primary">continue</button>
         </div>
       </div>
     </div>
@@ -96,7 +130,7 @@
         font-size: 2em;
         font-weight: bold;
     }
-    #settings,#summer-break-modal{
+    #settings,#summer-break-modal,#whats-new{
         color: black;
         font-family: "Comfortaa", sans-serif;
     }
@@ -111,6 +145,30 @@
         flex-direction: row;
         align-items: center;
         justify-content: center;
+    }
+
+    .whats-new-item{
+        margin: 10px;
+        padding: 10px;
+        border-radius: 10px;
+        background: #0000000F;
+        text-align: left;
+    }
+    .whats-new-item > h2{
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+    .whats-new-item > p{
+        font-size: 1em;
+        padding: 5px;
+        margin: 0;
+    }
+    #whats-new{
+        font-family: "Raleway", sans-serif;
+    }
+
+    #time-left{
+        transition: all 500ms ease;
     }
 </style>
 
