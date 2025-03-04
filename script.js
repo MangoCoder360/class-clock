@@ -239,12 +239,7 @@ var schedule = [];
     }
   }
 
-  //setInterval(updateSchedule, 200);
-  function tick() {
-    updateSchedule();
-    requestAnimationFrame(tick);
-  }
-  setTimeout(tick, 300);
+  setInterval(updateSchedule, 200);
 
 
 function fsCountdown(){
