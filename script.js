@@ -191,12 +191,12 @@ var schedule = [];
         const formattedSecondsLeft = secondsLeft.toString().padStart(2, '0');
         const formattedMinutesLeft = minutesLeft.toString().padStart(2, '0');
         document.getElementById('time-left').textContent = `${formattedMinutesLeft}:${formattedSecondsLeft}`;
-        document.getElementById("title").innerHTML = `${formattedMinutesLeft}:${formattedSecondsLeft} - Class Clock`;
+        //document.getElementById("title").innerHTML = `${formattedMinutesLeft}:${formattedSecondsLeft} - Class Clock`;
       }
       else{ // MAIN TIME CALCULATION LOGIC
-        if (totalMinutesLeft < 1) {
+        if (totalMinutesLeft < 1 && secondsLeft < 30) {
           var decimalSecondsLeft = secondsLeft + (timeLeft.getMilliseconds() / 1000);
-          finalCountdownAnimation(decimalSecondsLeft, secondsLeft);
+          //finalCountdownAnimation(decimalSecondsLeft, secondsLeft);
           return;
         }
 
@@ -209,7 +209,7 @@ var schedule = [];
         else {
         document.getElementById('time-left').textContent = `${formattedMinutesLeft}:${formattedSecondsLeft} remaining`;
         }
-        document.getElementById("title").innerHTML = `${formattedMinutesLeft}:${formattedSecondsLeft} - Class Clock`;
+        //document.getElementById("title").innerHTML = `${formattedMinutesLeft}:${formattedSecondsLeft} - Class Clock`;
       }
       document.getElementById('period-progress').textContent = `Period Progress: ${periodProgress.toFixed(1)}%`;
   
@@ -481,7 +481,6 @@ function whatsNewInit() {
 var lastSecond = 0;
 var curFontSize = 4;
 function finalCountdownAnimation(secondsLeft, formattedSecs){
-  document.getElementById("title").innerHTML = "🚨🚨🚨";
   document.getElementById("time-left").innerHTML = formattedSecs;
   document.getElementById("time-left").style.fontSize = curFontSize + "em";
   document.getElementById("period").style.display = "none";
@@ -490,11 +489,6 @@ function finalCountdownAnimation(secondsLeft, formattedSecs){
   document.getElementById("scheduleName").style.display = "none";
   document.getElementById("ccu-container").style.display = "none";
   document.getElementById("settings-btn").style.display = "none";
-
-  var blurAmt = Math.pow((61 - secondsLeft) / 40, 15);
-  var darknessAmt = (61 - secondsLeft) / 61;
-
-  document.documentElement.style.filter = "brightness(" + (1.5 - darknessAmt) + ")";
 
   if(formattedSecs != lastSecond){
     lastSecond = formattedSecs;

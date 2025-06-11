@@ -24,13 +24,16 @@
     <link rel="icon" type="image/x-icon" href="/cc-logo-min.png">
 </head>
 <body onload="setThemeFromUrl()" id="body">
-    <h3 class="hide" id="period">Period 0</h3>
-    <h2 id="time-left">00:00 remaining</h2>
-    <h4 class="hide" id="day-progress">0%</h4>
-    <h4 class="hide" id="period-progress">0%</h4>
-    <h4 style="display:none;" id="target-battery">0%</h4><br>
-    <p id="scheduleName" class="hide">Schedule Name</p><br>
-    <div id="ccu-container"><p style="margin-right:7px;" id="ccu">0</p><p>active Class Clock users</p><br></div>
+    <div style="display:none;">
+        <h3 class="hide" id="period">Period 0</h3>
+        <h2 id="time-left">00:00 remaining</h2>
+        <h4 class="hide" id="day-progress">0%</h4>
+        <h4 class="hide" id="period-progress">0%</h4>
+        <h4 style="display:none;" id="target-battery">0%</h4><br>
+        <p id="scheduleName" class="hide">Schedule Name</p><br>
+        <div id="ccu-container"><p style="margin-right:7px;" id="ccu">0</p><p>active Class Clock users</p><br></div>
+    </div>
+    <h2>Class Clock will be back next year<br>Have a great summer!</h2>
     <button id="settings-btn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#settings">Settings</button>
 </body>
 </html>
@@ -45,9 +48,9 @@
             <button onclick="window.location.href='/custom-schedule-editor.html'">edit custom schedule</button><br>
             <button onclick="window.location.href='/school-select.html'">change school</button><br>
             <br>
-            <a href="/community-themes.html">browse community created themes</a><br>
-            <a href="/?theme=default">reset theme to default</a><br>
-            <a href="/themeeditor.html">theme editor</a>
+            <button class="big-btn" onclick="window.location.href='/community-themes.html'">browse community created themes</button><br><br>
+            <button onclick="window.location.href='/?theme=default'">reset theme to default</button><br>
+            <button onclick="window.location.href='/themeeditor.html'">theme editor</button><br>
             <br>
             <h1 id="customThemeName" class="modal-title fs-6"></h1>
             <br>
@@ -169,6 +172,10 @@
 
     #time-left{
         transition: all 500ms ease;
+    }
+
+    .big-btn{
+        font-size: 1.2em;
     }
 </style>
 
