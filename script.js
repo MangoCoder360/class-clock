@@ -20,28 +20,28 @@ const whsTueThruFriSchedule = [
   { period: 'Before School', start: '08:30', end: '09:00' },
   { period: 'Period 1', start: '09:00', end: '09:55' },
   { period: 'Passing Time', start: '09:55', end: '10:00' },
-  { period: 'Period 2', start: '10:00', end: '10:53' },
-  { period: 'Passing Time', start: '10:53', end: '10:58' },
-  { period: 'GRIT 101', start: '10:58', end: '11:23' },
-  { period: 'Lunch', start: '11:23', end: '11:53' },
-  { period: 'Passing Time', start: '11:53', end: '11:58' },
-  { period: 'Period 3', start: '11:58', end: '12:51' },
-  { period: 'Passing Time', start: '12:51', end: '12:56' },
-  { period: 'Period 4', start: '12:56', end: '13:49' },
-  { period: 'Passing Time', start: '13:49', end: '13:59' },
-  { period: 'Period 5', start: '13:59', end: '14:52' },
-  { period: 'Passing Time', start: '14:52', end: '14:57' },
-  { period: 'Period 6', start: '14:57', end: '15:50' },
+  { period: 'Period 2', start: '10:00', end: '10:54' },
+  { period: 'Passing Time', start: '10:54', end: '10:59' },
+  { period: 'Period 3', start: '10:59', end: '11:53' },
+  { period: 'Lunch', start: '11:53', end: '12:23' },
+  { period: 'Passing Time', start: '12:23', end: '12:28' },
+  { period: 'Period 4', start: '12:28', end: '13:22' },
+  { period: 'Passing Time', start: '13:22', end: '13:27' },
+  { period: 'GRIT 101', start: '13:27', end: '13:52' },
+  { period: 'Passing Time', start: '13:52', end: '13:57' },
+  { period: 'Period 5', start: '13:57', end: '14:51' },
+  { period: 'Passing Time', start: '14:51', end: '14:56' },
+  { period: 'Period 6', start: '14:56', end: '15:50' },
 ];
 
-const whsmondaySchedule = [
+const whsMondaySchedule = [
   { period: 'Before School', start: '10:00', end: '10:15' },
   { period: 'Period 1', start: '10:15', end: '11:05' },
   { period: 'Passing Time', start: '11:05', end: '11:10' },
   { period: 'Period 2', start: '11:10', end: '11:56' },
-  { period: 'Lunch', start: '11:56', end: '12:26' },
-  { period: 'Passing Time', start: '12:26', end: '12:31' },
-  { period: 'Period 3', start: '12:31', end: '13:17' },
+  { period: 'Passing Time', start: '11:56', end: '12:01' },
+  { period: 'Period 3', start: '12:01', end: '12:47' },
+  { period: 'Lunch', start: '12:47', end: '13:17' },
   { period: 'Passing Time', start: '13:17', end: '13:22' },
   { period: 'Period 4', start: '13:22', end: '14:08' },
   { period: 'Passing Time', start: '14:08', end: '14:13' },
@@ -84,34 +84,6 @@ const wmsMondaySchedule = [
   { period: 'Period 6', start: '14:09', end: '14:45' },
   { period: 'Passing Time', start: '14:45', end: '14:49' },
   { period: 'Period 7', start: '14:49', end: '15:25' }
-];
-
-const dohsMondaySchedule = [
-  { period: 'Block 1', start: '08:30', end: '09:38'},
-  { period: 'Brunch', start: '09:38', end: '09:45'},
-  { period: 'Passing Time', start: '09:45', end: '09:51'},
-  { period: 'Block 2', start: '09:51', end: '10:59'},
-  { period: 'Passing Time', start: '10:59', end: '11:05'},
-  { period: 'Advisory', start: '11:05', end: '11:25'},
-  { period: 'Lunch', start: '11:25', end: '11:55'},
-  { period: 'Passing Time', start: '11:55', end: '12:01'},
-  { period: 'Block 4', start: '12:01', end: '13:09'},
-  { period: 'Passing Time', start: '13:09', end: '13:15'},
-  { period: 'Block 5', start: '13:15', end: '14:23'}
-]
-
-const dohsTuesdayFridaySchedule = [
-  { period: 'Block 1', start: '08:30', end: '09:53' },
-  { period: 'Brunch', start: '09:53', end: '10:00' },
-  { period: 'Passing Time', start: '10:00', end: '10:06' },
-  { period: 'Block 2', start: '10:06', end: '11:29' },
-  { period: 'Passing Time', start: '11:29', end: '11:35' },
-  { period: 'Intervention', start: '11:35', end: '12:11' },
-  { period: 'Lunch', start: '12:11', end: '12:41' },
-  { period: 'Passing Time', start: '12:41', end: '12:47' },
-  { period: 'Block 4', start: '12:47', end: '14:10' },
-  { period: 'Passing Time', start: '14:10', end: '14:16' },
-  { period: 'Block 5', start: '14:16', end: '15:39' }
 ];
 
 
@@ -196,8 +168,10 @@ var schedule = [];
       else{ // MAIN TIME CALCULATION LOGIC
         if (totalMinutesLeft < 1) {
           var decimalSecondsLeft = secondsLeft + (timeLeft.getMilliseconds() / 1000);
-          finalCountdownAnimation(decimalSecondsLeft, secondsLeft);
-          return;
+          if (decimcalSecondsLeft < 30) {
+            finalCountdownAnimation(decimalSecondsLeft, secondsLeft);
+            return;
+          }
         }
 
         const formattedSecondsLeft = secondsLeft.toString().padStart(2, '0');
@@ -370,17 +344,12 @@ function setScheduleFromSchool(){
   if(schoolName == "whs"){
     console.log("School = WHS");
     schoolAcronym = "WHS";
-    setScheduleVar(whsmondaySchedule,whsTueThruFriSchedule);
+    setScheduleVar(whsMondaySchedule,whsTueThruFriSchedule);
   }
   else if(schoolName == "wms"){
     console.log("School = WMS");
     schoolAcronym = "WMS";
     setScheduleVar(wmsMondaySchedule,wmsTueThruFriSchedule);
-  }
-  else if(schoolName == "dohs"){
-    console.log("School = DOHS");
-    schoolAcronym = "DOHS";
-    setScheduleVar(dohsMondaySchedule,dohsTuesdayFridaySchedule);
   }
   else if(schoolName == "demo"){
     console.log("School = DEMO");
