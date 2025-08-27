@@ -166,13 +166,13 @@ var schedule = [];
         document.getElementById("title").innerHTML = `${formattedMinutesLeft}:${formattedSecondsLeft} - Class Clock`;
       }
       else{ // MAIN TIME CALCULATION LOGIC
-        if (totalMinutesLeft < 1) {
-          var decimalSecondsLeft = secondsLeft + (timeLeft.getMilliseconds() / 1000);
-          if (decimcalSecondsLeft < 30) {
-            finalCountdownAnimation(decimalSecondsLeft, secondsLeft);
-            return;
-          }
-        }
+        // if (totalMinutesLeft < 1) {
+        //   var decimalSecondsLeft = secondsLeft + (timeLeft.getMilliseconds() / 1000);
+        //   if (decimcalSecondsLeft < 30) {
+        //     finalCountdownAnimation(decimalSecondsLeft, secondsLeft);
+        //     return;
+        //   }
+        // }
 
         const formattedSecondsLeft = secondsLeft.toString().padStart(2, '0');
         const formattedMinutesLeft = totalMinutesLeft.toString().padStart(2, '0');
