@@ -17,13 +17,13 @@ const demoSchedule = [
 ];
 
 const whsTueThruFriSchedule = [
-  { period: 'Period 1 Final', start: '09:00', end: '11:00' },
-  { period: 'Period 2', start: '11:05', end: '11:55' },
+  { period: 'Period 2 Final', start: '09:00', end: '11:00' },
+  { period: 'Period 3', start: '11:05', end: '11:55' },
   { period: 'Lunch', start: '11:55', end: '12:25' },
   { period: 'Passing Time', start: '12:25', end: '12:30' },
-  { period: 'Period 5', start: '12:30', end: '13:20' },
+  { period: 'Period 6', start: '12:30', end: '13:20' },
   { period: 'GRIT 101', start: '13:25', end: '13:45' },
-  { period: 'Period 4 Final', start: '13:50', end: '15:50' },
+  { period: 'Period 5 Final', start: '13:50', end: '15:50' },
 ];
 
 const whsMondaySchedule = [
