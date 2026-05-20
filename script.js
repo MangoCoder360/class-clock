@@ -19,19 +19,13 @@ const demoSchedule = [
 const whsTueThruFriSchedule = [
   { period: 'Before School', start: '08:30', end: '09:00' },
   { period: 'Period 1', start: '09:00', end: '09:55' },
-  { period: 'Passing Time', start: '09:55', end: '10:00' },
-  { period: 'Period 2', start: '10:00', end: '10:54' },
-  { period: 'Passing Time', start: '10:54', end: '10:59' },
-  { period: 'Period 3', start: '10:59', end: '11:53' },
-  { period: 'Lunch', start: '11:53', end: '12:23' },
-  { period: 'Passing Time', start: '12:23', end: '12:28' },
-  { period: 'Period 4', start: '12:28', end: '13:22' },
-  { period: 'Passing Time', start: '13:22', end: '13:27' },
-  { period: 'GRIT 101', start: '13:27', end: '13:52' },
-  { period: 'Passing Time', start: '13:52', end: '13:57' },
-  { period: 'Period 5', start: '13:57', end: '14:51' },
-  { period: 'Passing Time', start: '14:51', end: '14:56' },
-  { period: 'Period 6', start: '14:56', end: '15:50' },
+  { period: 'Period 2', start: '10:00', end: '10:50' },
+  { period: 'Period 3', start: '10:55', end: '11:45' },
+  { period: 'Lunch', start: '11:45', end: '12:15' },
+  { period: 'Period 4', start: '12:20', end: '13:10' },
+  { period: 'Period 5', start: '13:15', end: '14:05' },
+  { period: 'Period 6', start: '14:10', end: '15:00' },
+  { period: 'Assembly', start: '15:05', end: '15:50' },
 ];
 
 const whsMondaySchedule = [
@@ -104,7 +98,12 @@ var schedule = [];
       document.getElementById("scheduleName").innerHTML = schoolAcronym+" Monday Schedule";
     }
     else{
-      document.getElementById("scheduleName").innerHTML = schoolAcronym+" Tuesday-Friday Schedule";
+      if (schoolAcronym == "WHS") {
+        document.getElementById("scheduleName").innerHTML = "WHS Assembly Schedule";
+      }
+      else{
+        document.getElementById("scheduleName").innerHTML = schoolAcronym+" Tuesday-Friday Schedule";
+      }
     }
   
     // Check if it's a weekend (Saturday or Sunday)
