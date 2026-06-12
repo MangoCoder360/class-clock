@@ -69,7 +69,7 @@ function setThemeFromUrl() {
 
   function showNumDaysLeft(){
     var today = new Date();
-    var summerBreak = new Date("2024-08-27");
+    var summerBreak = new Date("2026-08-26");
     var diff = summerBreak - today;
     var days = Math.floor(diff / (1000 * 60 * 60 * 24));
     document.getElementById("time-left").innerHTML = days + " days remaining";
