@@ -21,6 +21,14 @@
         <h3>WMS</h3>
         <h4>Woodland Middle School</h4>
     </div>
+    <div onclick="setSchoolCookie('shs1')" class="school">
+        <h3>SHS <i style="font-size: 0.7em;">(1st lunch)</i></h3>
+        <h4>Skyview High School</h4>
+    </div>
+    <div onclick="setSchoolCookie('shs2')" class="school">
+        <h3>SHS <i style="font-size: 0.7em;">(2nd lunch)</i></h3>
+        <h4>Skyview High School</h4>
+    </div>
     <!-- <div onclick="setSchoolCookie('dohs')" class="school">
         <h3>DOHS</h3>
         <h4>Del Oro High School</h4>
@@ -74,7 +82,7 @@
 </style>
 <script>
     function setSchoolCookie(school){
-        Cookies.set('school', school, { expires: 60 });
+        Cookies.set('school', school, { expires: 365 });
         window.location.href = "/";
     }
 </script>

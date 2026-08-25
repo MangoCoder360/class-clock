@@ -23,7 +23,7 @@
     <link rel="manifest" href="/manifest.json"/>
     <link rel="icon" type="image/x-icon" href="/cc-logo-min.png">
 </head>
-<body onload="window.location.href='/summer-break.html'" id="body">
+<body onload="setThemeFromUrl()" id="body">
     <h3 class="hide" id="period">Period 0</h3>
     <h2 id="time-left">00:00 remaining</h2>
     <h4 class="hide" id="day-progress">0%</h4>
@@ -66,17 +66,17 @@
     </div>
 </div>
 
-<div class="modal fade" id="whats-new--disabled" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="whats-new" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="staticBackdropLabel">what's new in class clock?</h1>
-          <p id="whatsNewVersion" style="font-family: sans-serif; color:rgba(0, 0, 0, 0.2);">v1.1.1-aprilfools</p>
+          <p id="whatsNewVersion" style="font-family: sans-serif; color:rgba(0, 0, 0, 0.2);">v1.1.2</p>
         </div>
         <div class="modal-body">
             <div class="whats-new-item">
-                <h2>the end of class clock</h2>
-                <p>due to personal circumstances, it is with great pain that i officially announce that today will be the last day of classclock and i will be taking it permanently offline at the end of the day. it was a great pleasure having you all use it, and look forward to many more things from me in the future</p>
+                <h2>new school year</h2>
+                <p>welcome to the 2026-2027 school year! class clock is back and better than ever (i didn't change a single thing)</p>
             </div>
 
             <button onclick="whatsNewAcknowledge()" class="btn btn-outline-primary">continue</button>
