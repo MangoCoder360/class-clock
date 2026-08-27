@@ -86,6 +86,50 @@ const wmsMondaySchedule = [
   { period: 'Period 7', start: '14:49', end: '15:25' }
 ];
 
+const shs1ScheduleTueThruFri = [
+  { period: '1st Period', start: '08:35', end: '09:25' },
+  { period: '2nd Period', start: '09:30', end: '10:20' },
+  { period: 'STORM TIME', start: '10:25', end: '10:55' },
+  { period: '3rd Period', start: '11:00', end: '11:50' },
+  { period: 'Lunch', start: '11:55', end: '12:25' },
+  { period: '4th Period', start: '12:30', end: '13:20' },
+  { period: '5th Period', start: '13:25', end: '14:15' },
+  { period: '6th Period', start: '14:20', end: '15:10' },
+]
+
+const shs2ScheduleTueThruFri = [
+  { period: '1st Period', start: '08:35', end: '09:25' },
+  { period: '2nd Period', start: '09:30', end: '10:20' },
+  { period: 'STORM TIME', start: '10:25', end: '10:55' },
+  { period: '3rd Period', start: '11:00', end: '11:50' },
+  { period: '4th Period', start: '11:55', end: '12:45' },
+  { period: 'Lunch', start: '12:50', end: '13:20' },
+  { period: '5th Period', start: '13:25', end: '14:15' },
+  { period: '6th Period', start: '14:20', end: '15:10' },
+]
+
+const shs1ScheduleMonday = [
+  { period: '1st Period', start: '08:35', end: '09:10' },
+  { period: '2nd Period', start: '09:15', end: '09:45' },
+  { period: 'SEL Time', start: '09:45', end: '10:10' },
+  { period: '3rd Period', start: '10:15', end: '10:45' },
+  { period: '1st Lunch', start: '10:50', end: '11:20' },
+  { period: '4th Period', start: '11:25', end: '11:55' },
+  { period: '5th Period', start: '12:00', end: '12:30' },
+  { period: '6th Period', start: '12:35', end: '13:10' },
+]
+
+const shs2ScheduleMonday = [
+  { period: '1st Period', start: '08:35', end: '09:10' },
+  { period: '2nd Period', start: '09:15', end: '09:45' },
+  { period: 'SEL Time', start: '09:45', end: '10:10' },
+  { period: '3rd Period', start: '10:15', end: '10:45' },
+  { period: '4th Period', start: '10:50', end: '11:20' },
+  { period: '2nd Lunch', start: '11:25', end: '11:55' },
+  { period: '5th Period', start: '12:00', end: '12:30' },
+  { period: '6th Period', start: '12:35', end: '13:10' }
+]
+
 
 var schedule = [];
   
@@ -353,9 +397,15 @@ function setScheduleFromSchool(){
     alert("Hi there! If you're a student or teacher at WMS and want to use Class Clock, please send me an email using the link on the school select page.");
     window.location.href = "/school-select.html";
   }
-  else if(schoolName == "shs1" || schoolName == "shs2"){
-    alert("Check back soon! Your school is on its way");
-    window.location.href = "/school-select.html";
+  else if(schoolName == "shs1"){
+    console.log("School = SHS (1st lunch)")
+    schoolAcronym = "(1st lunch) SHS";
+    setScheduleVar(shs1ScheduleMonday, shs1ScheduleTueThruFri);
+  }
+  else if(schoolName == "shs2"){
+    console.log("School = SHS (2nd lunch)")
+    schoolAcronym = "(2nd lunch) SHS";
+    setScheduleVar(shs2ScheduleMonday, shs2ScheduleTueThruFri);
   }
   else if(schoolName == "demo"){
     console.log("School = DEMO");
