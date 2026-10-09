@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="robots" content="noindex nofollow">
+	<title>Graduation Countdown</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Raleway:wght@400;600;700;900&display=swap" rel="stylesheet">
+	<style>
+		:root { --ink: #1c1730; --paper: #fffdf5; }
+		* { box-sizing: border-box; }
+		html, body { min-height: 100%; }
+		body {
+			align-items: center;
+			background: linear-gradient(70deg, #27a051 0%, #b18610 50%, #850505 100%);
+			color: white;
+			display: flex;
+			font-family: "Raleway", sans-serif;
+			justify-content: center;
+			margin: 0;
+			overflow-x: hidden;
+			padding: 24px;
+			text-align: center;
+		}
+		main { max-width: 900px; width: 100%; }
+		.eyebrow {
+			font-family: "Comfortaa", sans-serif;
+			font-size: clamp(0.8rem, 2vw, 1rem);
+			font-weight: 700;
+			letter-spacing: 0.22em;
+			margin: 0 0 10px;
+			text-transform: uppercase;
+		}
+		h1 {
+			font-size: clamp(3rem, 10vw, 7rem);
+			font-weight: 900;
+			line-height: 0.95;
+			margin: 0;
+			text-transform: uppercase;
+		}
+		.date-label {
+			font-family: "Comfortaa", sans-serif;
+			font-size: clamp(1rem, 2.5vw, 1.4rem);
+			margin: 22px 0 30px;
+		}
+		.countdown {
+			display: grid;
+			gap: 12px;
+			grid-template-columns: repeat(4, 1fr);
+			margin: 0 auto 34px;
+			max-width: 760px;
+		}
+		.unit {
+			background: rgba(255, 255, 255, 0.16);
+			border: 2px solid rgba(255, 255, 255, 0.42);
+			border-radius: 10px;
+			padding: clamp(14px, 3vw, 24px) 8px;
+		}
+		.number {
+			display: block;
+			font-size: clamp(2.2rem, 7vw, 5rem);
+			font-weight: 900;
+			line-height: 1;
+		}
+		.label {
+			display: block;
+			font-family: "Comfortaa", sans-serif;
+			font-size: clamp(0.65rem, 1.8vw, 0.9rem);
+			margin-top: 10px;
+			text-transform: uppercase;
+		}
+		.message {
+			font-family: "Comfortaa", sans-serif;
+			font-size: clamp(1rem, 2.5vw, 1.3rem);
+			margin: 0 0 28px;
+		}
+		.settings {
+			background: var(--paper);
+			border: 0;
+			border-radius: 8px;
+			color: var(--ink);
+			cursor: pointer;
+			font-family: "Comfortaa", sans-serif;
+			font-weight: 700;
+			padding: 12px 18px;
+		}
+		dialog {
+			border: 0;
+			border-radius: 10px;
+			color: var(--ink);
+			font-family: "Comfortaa", sans-serif;
+			max-width: 360px;
+			padding: 26px;
+			text-align: left;
+			width: calc(100% - 40px);
+		}
+		dialog::backdrop { background: rgba(0, 0, 0, 0.45); }
+		dialog h2 { margin-top: 0; }
+		label, input, dialog button { display: block; width: 100%; }
+		input {
+			border: 1px solid #b9b5aa;
+			border-radius: 6px;
+			font: inherit;
+			margin: 8px 0 18px;
+			padding: 10px;
+		}
+		dialog button {
+			background: var(--ink);
+			border: 0;
+			border-radius: 6px;
+			color: white;
+			cursor: pointer;
+			font: inherit;
+			padding: 11px;
+		}
+		@media (max-width: 520px) {
+			body { padding: 18px 12px; }
+			.countdown { gap: 7px; }
+			.unit { padding-left: 3px; padding-right: 3px; }
+		}
+	</style>
+</head>
+<body>
+	<main>
+		<p class="eyebrow">COUNTDOWN TILL</p>
+		<h1>GRADUATION</h1>
+		<p class="date-label" id="date-label">until the big day</p>
+		<section class="countdown" aria-label="Time remaining until graduation">
+			<div class="unit"><span class="number" id="days">0</span><span class="label">days</span></div>
+			<div class="unit"><span class="number" id="hours">0</span><span class="label">hours</span></div>
+			<div class="unit"><span class="number" id="minutes">0</span><span class="label">minutes</span></div>
+			<div class="unit"><span class="number" id="seconds">0</span><span class="label">seconds</span></div>
+		</section>
+		<p class="message" id="message"></p>
+	</main>
+
+	<script>
+		const graduationDate = "2027-06-11T19:00";
+		const dateLabel = document.getElementById("date-label");
+		const message = document.getElementById("message");
+		const units = {
+			days: document.getElementById("days"),
+			hours: document.getElementById("hours"),
+			minutes: document.getElementById("minutes"),
+			seconds: document.getElementById("seconds")
+		};
+		function updateCountdown() {
+			const target = new Date(graduationDate).getTime();
+			const difference = target - Date.now();
+			if (difference <= 0) {
+				Object.values(units).forEach((unit) => unit.textContent = "0");
+				dateLabel.textContent = "you did it!";
+				message.textContent = "congratulations, graduate";
+				return;
+			}
+			const totalSeconds = Math.floor(difference / 1000);
+			units.days.textContent = Math.floor(totalSeconds / 86400);
+			units.hours.textContent = String(Math.floor(totalSeconds / 3600) % 24).padStart(2, "0");
+			units.minutes.textContent = String(Math.floor(totalSeconds / 60) % 60).padStart(2, "0");
+			units.seconds.textContent = String(totalSeconds % 60).padStart(2, "0");
+			dateLabel.textContent = `${new Date(target).toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" })}`;
+		}
+
+		updateCountdown();
+		setInterval(updateCountdown, 1000);
+	</script>
+</body>
+</html>
